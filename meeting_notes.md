@@ -36,3 +36,11 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Discuss module and service interface definitions
 - Define source-control strategy
 - Pull Request Deadline
+
+### Agenda Items
+- Brady Mitchelmore will be SCRUM master for next meeting
+- Cody Cribb will be note taker for next meeting
+- Each team member with come up with an abstract STUB of their service
+- We will be using the Trunk based souce control strategy
+- **PULL REQUEST DEADLINE - October 17th**
+
