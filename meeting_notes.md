@@ -21,6 +21,7 @@ Typical Architecture
 ### Strategy for Initial Tasks
 We will use the code from challenge 9 to create a working web-server to initialize the project
 
+---
 
 ## Oct 4, 2023 
 **Recorded by:** Brady Mitchelmore
