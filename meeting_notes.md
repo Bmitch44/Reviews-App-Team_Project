@@ -22,12 +22,12 @@ Typical Architecture
 We will use the code from challenge 9 to create a working web-server to initialize the project
 
 
-## Oct 3, 2023 
-**Recorded by:** Martha Snelgrove 
-**Notes submiited on:** Oct 3, 2023  
+## Oct 4, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Oct 4, 2023  
 **Venue:**  Discord 
 **Source:** None 
-**Time:**  4-5 
+**Time:**  6-7 
 **Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody Chaudhary,Vansh
 
 ### Agenda
