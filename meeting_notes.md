@@ -89,7 +89,7 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Update the READ.ME after merging all the working codes.
 - Create individual unittest. 
 - Scrum master assigned tasks to each member in the Kanban board
-## Tasks Assigned
+### Tasks Assigned
 - Create SessionManager class (Mayesha)
 - Create WebServer class (Cody)
 - Create Routes for Stub Methods (Cody)
