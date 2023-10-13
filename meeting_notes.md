@@ -62,6 +62,17 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Draft the software process for the project.
 - Review the progress on defining service and module interfaces.
 
+### Agenda Items
+- Cody Cribb will be SCRUM master for next meeting
+- Mayesha Jashim will be note taker for next meeting
+- Layout of the overall project was discussed in terms of structure
+- Layout of the project was created by Brady Mitchelmore
+
+### SCRUM Notes
+- STUBs were assigned in KanBan board, discussed how they would work together
+- KanBan board assignments were tasked to different group members regarding responsibilities. 
+
+
 ## Oct 12, 2023 
 **Recorded by:** Mayesha Jashim
 **Notes submiited on:** Oct 12, 2023
