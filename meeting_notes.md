@@ -61,3 +61,26 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Code reviews and performance reviews. (Outline has been created)
 - Draft the software process for the project.
 - Review the progress on defining service and module interfaces.
+
+## Oct 12, 2023 
+**Recorded by:** Mayesha Jashim
+**Notes submiited on:** Oct 12, 2023
+**SCRUM Master:** Martha Snelgrove
+**Venue:**  In Class (EN 2040) and Discord 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody Chaudhary,Vansh
+
+### Agenda
+- Deadline for uploading stubs with docstrings: Upload stubs by tonight (Oct 12)
+- Scrum master (Martha) will assign tasks in the Kanban Board
+- We will do code reviews via pull request. (Add feedbacks, approve or request changes accordingly)
+- Update the READ.ME after merging all the working codes.
+- Create individual unittest. 
+- Scrum master assigned tasks to each member in the Kanban board
+## Tasks Assigned
+- Create SessionManager class (Mayesha)
+- Create WebServer class (Cody)
+- Create Routes for Stub Methods (Cody)
+- Create template for each route (Vaansh)
+- Create dtata properties for classes (Martha)
