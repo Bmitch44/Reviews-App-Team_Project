@@ -71,3 +71,26 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ### SCRUM Notes
 - STUBs were assigned in KanBan board, discussed how they would work together
 - KanBan board assignments were tasked to different group members regarding responsibilities. 
+
+
+
+## Oct 16, 2023 
+**Recorded by:** Martha Snelgrove
+**Notes submiited on:** Oct 16, 2023
+**SCRUM Master:** Mayesha Jashim
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+-review code and progress
+-Next SCRUM master
+
+## Agenda Items
+- Vansh will be next SCRUM master
+- reviewed each others code, made sure code sections integrate correctly
+
+## SCRUM Notes
+-we will add task to comment code and make it PEP8 complient
+-add tests for methods
