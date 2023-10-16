@@ -9,7 +9,9 @@ class SessionManager:
         Args:
             db_path (str): The path to the database where session data is stored.
         """
-        pass
+        self.db_path = db_path
+        self.sessions = []
+        
 
     def create_session(self, user_id: int, is_active: int = 1):
         """
@@ -22,7 +24,10 @@ class SessionManager:
         Returns:
             Session: The created session object.
         """
-        pass
+        session = Session(user_id, is_active)
+        self.sessions.append(session)  # Add the session to your sessions data structure
+        return session
+        
 
     def get_session(self, session_id: str):
         """
@@ -34,7 +39,11 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        pass
+        for session in self.sessions:
+            if session.session_id == session_id:
+                return session
+        return None
+        
 
     def get_user_session(self, user_id: int):
         """
@@ -46,7 +55,11 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        pass
+        for session in self.sessions:
+            if session.user_id == user_id:
+                return session
+        return None
+        
 
     def update_session(self, session):
         """
@@ -55,4 +68,8 @@ class SessionManager:
         Args:
             session (Session): The session object to update.
         """
-        pass
+        for i, existing_session in enumerate(self.sessions):
+            if existing_session.session_id == session.session_id:
+                self.sessions[i] = session
+                return
+        

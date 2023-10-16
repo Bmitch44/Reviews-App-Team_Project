@@ -39,6 +39,7 @@ class UserInfo:
         Returns:
             SessionManager: The SessionManager object if login is successful, None otherwise.
         """
+        
         pass
 
     def logout(self, session_id):
