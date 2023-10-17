@@ -71,7 +71,6 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ### SCRUM Notes
 - STUBs were assigned in KanBan board, discussed how they would work together
 - KanBan board assignments were tasked to different group members regarding responsibilities. 
-
 ---
 
 ## Oct 12, 2023 
@@ -96,7 +95,6 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Create Routes for Stub Methods (Cody)
 - Create template for each route (Vaansh)
 - Create dtata properties for classes (Martha)
-
 ---
 
 ## Oct 16, 2023 
@@ -119,6 +117,3 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## SCRUM Notes
 -we will add task to comment code and make it PEP8 complient
 -add tests for methods
-
-
-
