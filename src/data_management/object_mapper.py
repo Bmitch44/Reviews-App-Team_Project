@@ -30,10 +30,6 @@ class ObjectMapper:
             type_name = obj.__name__.lower()
         else:
             type_name = obj.__class__.__name__.lower()
-
-        # check if the type is valid
-        if not type_name in self.data_store.TABLES.keys():
-            raise ValueError(f"Invalid object type: {type_name}")
         
         return type_name
 
@@ -47,13 +43,16 @@ class ObjectMapper:
         Returns:
             True if successful, False otherwise.
         """
-        try:
-            obj_type = self._get_obj_type(obj)
+        obj_type = self._get_obj_type(obj)
+        if obj_type in self.data_store.TABLES.keys():
             result = self.data_store.save(obj.data, obj_type)
+        else:
+            raise ValueError(f"Invalid object type: {obj_type}")
+        
+        if result:
             return result
-        except Exception as e:
-            print(f"Error adding {obj_type}: {str(e)}")
-        return False
+        else:
+            raise ValueError(f"error adding {obj_type} with id {obj.id}")
 
     def remove(self, obj) -> bool:
         """
@@ -65,7 +64,6 @@ class ObjectMapper:
             True if successful, False otherwise.
         """
         obj_type = self._get_obj_type(obj)
-        print(f"Removing {obj_type} with id {obj.id}")
         result = self.data_store.delete(obj.id, obj_type)
         if result:
             return result
@@ -85,7 +83,6 @@ class ObjectMapper:
         """
         try:
             obj_type = self._get_obj_type(obj_class)
-            print(f"Retrieving {obj_type} with id {id}")
             data = self.data_store.load(obj_type, id=id)
             if not data:
                 raise ValueError(f"{obj_type} with id {id} not found")
