@@ -1,7 +1,6 @@
 import datetime
 import uuid
 
-
 class User:
     """
     A user in the system

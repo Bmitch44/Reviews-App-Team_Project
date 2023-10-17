@@ -1,6 +1,6 @@
 import hashlib
 import os
-from src.app_logic.logic import User
+from src.app_logic.app_logic import User
 from src.user_management.session_management import SessionManager
 from src.data_management.object_mapper import ObjectMapper
 

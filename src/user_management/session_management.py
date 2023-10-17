@@ -1,5 +1,5 @@
 from src.data_management.object_mapper import ObjectMapper
-from src.app_logic.logic import Session
+from src.app_logic.app_logic import Session
 
 class SessionManager:
     def __init__(self, db_path: str):
