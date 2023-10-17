@@ -95,7 +95,6 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Create Routes for Stub Methods (Cody)
 - Create template for each route (Vaansh)
 - Create dtata properties for classes (Martha)
-
 ---
 
 ## Oct 16, 2023 
@@ -114,7 +113,3 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## Agenda Items
 - Vansh will be next SCRUM master
 - reviewed each others code, made sure code sections integrate correctly
-
-## SCRUM Notes
--we will add task to comment code and make it PEP8 complient
--add tests for methods
