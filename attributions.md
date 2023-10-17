@@ -13,3 +13,6 @@
 | Brady Mitchelmore | added tests for the public methods of `data_store.py` | test/test_data_store.py |
 | Brady Mitchelmore | implemented `object_mapper.py` which imports the data_store module, it has public methods add, get, and remove which abstract the methods of data store and work directly with objects | src/data_management/object_mapper.py |
 | Brady Mitchelmore | added partial tests (waiting on other implementaions) for `object_mapper.py` | test/test_object_mapper.py |
+|Mayesha Jashim| learned [Hash Password](https://www.geeksforgeeks.org/how-to-hash-passwords-in-python/) | `user_info.py`
+|Mayesha Jashim| Implemented methods in `session_management.py` | src/user_management/session_management.py|
+|Mayesha Jashim| Implemented methods in `user_info.py` | src/user_management/user_info.py
