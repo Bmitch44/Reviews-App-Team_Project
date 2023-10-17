@@ -26,7 +26,7 @@ class SessionManager:
             Session: The created session object.
         """
         session = Session(user_id, is_active)
-        self.session.append(session)  
+        self.session.add(session)  
         return session
         
 
