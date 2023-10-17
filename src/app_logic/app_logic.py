@@ -1,4 +1,5 @@
 import datetime
+import uuid
 
 class User:
     """s
@@ -92,7 +93,7 @@ class Session:
         self.expires_at = expires_at or (self.created_at+datetime.datetime.now())
         self.last_activity = last_activity or datetime.datetime.now()
         self.is_active = is_active
-        self.session_id = session_id or uuid4.uuid4().hex
+        self.session_id = session_id or uuid.uuid4().hex
 
     
 
