@@ -1,7 +1,6 @@
 import datetime
 import uuid
 
-
 class User:
     """
     A user in the system
@@ -12,7 +11,7 @@ class User:
         self.username = username
         self.email = email
         self.hashed_password = hashed_password
-        self.id = id
+        self.id = id or uuid.uuid4().hex
     
     @property
     def data(self):
@@ -51,7 +50,7 @@ class Reviews:
         self.user_id = user_id
         self.topic_id = topic_id
         self.status = status
-        self.id = id
+        self.id = id or uuid.uuid4().hex
 
     @property
     def data(self):
@@ -90,7 +89,7 @@ class Topic:
         self.name = name
         self.description = description
         self.user_id = user_id
-        self.id = id
+        self.id = id or uuid.uuid4().hex
 
     @property
     def data(self):

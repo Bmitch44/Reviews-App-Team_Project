@@ -15,3 +15,6 @@
 | Brady Mitchelmore | added partial tests (waiting on other implementaions) for `object_mapper.py` | test/test_object_mapper.py |
 | Martha Snelgrove | Added 'app_logic.py' file and implemented the 'User' 'Review' 'Topic' and 'Session' classes| src/app_logic/app_logic.py|
 |Martha Snelgrove | Added 'test_app_logic.py' and implemented tests|test/test_app_logic.py|
+| Brady Mitchelmore | updated `db_schema.py` to use TEXT PRIMARY ID instead of INTEGER | src/data_management/db_schema.py |
+| Brady Mitchelmore | updated data_management files to account for the INTEGER to TEXT change | src/data_management/ |
+| Brady Mitchelmore | completed `test_object_mapper.py` and updated `test_data_store.py` to account for changes | test/ |

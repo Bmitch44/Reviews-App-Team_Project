@@ -15,7 +15,7 @@ class TestDataStore(TestCase):
 
     def test_save_success(self):
         user_data = {
-            "id": 1,
+            "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
@@ -24,7 +24,7 @@ class TestDataStore(TestCase):
 
     def test_save_failure(self):
         user_data = {
-            "id": 1,
+            "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
@@ -35,7 +35,7 @@ class TestDataStore(TestCase):
 
     def test_load_success(self):
         user_data = {
-            "id": 1,
+            "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
@@ -46,7 +46,7 @@ class TestDataStore(TestCase):
 
     def test_load_failure(self):
         user_data = {
-            "id": 1,
+            "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
@@ -57,7 +57,7 @@ class TestDataStore(TestCase):
 
     def test_clear_tables(self):
         user_data = {
-            "id": 1,
+            "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
@@ -69,7 +69,7 @@ class TestDataStore(TestCase):
 
     def test_delete_success(self):
         user_data = {
-            "id": 1,
+            "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",

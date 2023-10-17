@@ -2,7 +2,7 @@
 # Table creation statements
 USER_TABLE = """
 CREATE TABLE IF NOT EXISTS user (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     username TEXT NOT NULL UNIQUE,
     hashed_password TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 TOPIC_TABLE = """
 CREATE TABLE IF NOT EXISTS topic (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     user_id INTEGER,
     name TEXT NOT NULL UNIQUE,
     description TEXT NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS topic (
 
 REVIEW_TABLE = """
 CREATE TABLE IF NOT EXISTS review (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     user_id INTEGER,
     topic_id INTEGER,
     review_text TEXT,
