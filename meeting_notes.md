@@ -71,7 +71,6 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ### SCRUM Notes
 - STUBs were assigned in KanBan board, discussed how they would work together
 - KanBan board assignments were tasked to different group members regarding responsibilities. 
-
 ---
 
 ## Oct 12, 2023 
@@ -96,7 +95,6 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Create Routes for Stub Methods (Cody)
 - Create template for each route (Vaansh)
 - Create dtata properties for classes (Martha)
-
 ---
 
 ## Oct 16, 2023 
@@ -120,5 +118,28 @@ We will use the code from challenge 9 to create a working web-server to initiali
 -we will add task to comment code and make it PEP8 complient
 -add tests for methods
 
+---
 
+## Oct 17, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Oct 17, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
 
+## Agenda
+- what elements of the first sprint will be completed
+- what tasks, documents, and marking scheme elements will not be completed in time for the first sprint
+- decisions about continuing some tasks into the next sprint
+
+## Agenda Items
+- The elements of the first sprint that will be complete is the database operations, and a minimal running server
+- The user_management is close to being completed and the server is also getting close
+- Still waiting on templates to be used when rendering pages
+
+## Scrum Notes
+- app_logic and data_management now implemented
+- assigned tasks to create unit tests for our methods, includes 1 succcess and 1 failure case ofr each method. (exludes `server_app.py` for sprint 1)
+- add tests for methods

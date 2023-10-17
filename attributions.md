@@ -13,3 +13,7 @@
 | Brady Mitchelmore | added tests for the public methods of `data_store.py` | test/test_data_store.py |
 | Brady Mitchelmore | implemented `object_mapper.py` which imports the data_store module, it has public methods add, get, and remove which abstract the methods of data store and work directly with objects | src/data_management/object_mapper.py |
 | Brady Mitchelmore | added partial tests (waiting on other implementaions) for `object_mapper.py` | test/test_object_mapper.py |
+| Martha Snelgrove | Added 'app_logic.py' file and implemented the 'User' 'Review' 'Topic' and 'Session' classes| src/app_logic.py|
+| Brady Mitchelmore | updated `db_schema.py` to use TEXT PRIMARY ID instead of INTEGER | src/data_management/db_schema.py |
+| Brady Mitchelmore | updated data_management files to account for the INTEGER to TEXT change | src/data_management/ |
+| Brady Mitchelmore | completed `test_object_mapper.py` and updated `test_data_store.py` to account for changes | test/ |
