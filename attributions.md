@@ -13,4 +13,5 @@
 | Brady Mitchelmore | added tests for the public methods of `data_store.py` | test/test_data_store.py |
 | Brady Mitchelmore | implemented `object_mapper.py` which imports the data_store module, it has public methods add, get, and remove which abstract the methods of data store and work directly with objects | src/data_management/object_mapper.py |
 | Brady Mitchelmore | added partial tests (waiting on other implementaions) for `object_mapper.py` | test/test_object_mapper.py |
-| Martha Snelgrove | Added 'app_logic.py' file and implemented the 'User' 'Review' 'Topic' and 'Session' classes| src/app_logic.py|
+| Martha Snelgrove | Added 'app_logic.py' file and implemented the 'User' 'Review' 'Topic' and 'Session' classes| src/app_logic/app_logic.py|
+|Martha Snelgrove | Added 'test_app_logic.py' and implemented tests|test/test_app_logic.py|
