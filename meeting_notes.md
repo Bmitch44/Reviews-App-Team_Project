@@ -142,3 +142,4 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## Scrum Notes
 - app_logic and data_management now implemented
 - assigned tasks to create unit tests for our methods, includes 1 succcess and 1 failure case ofr each method. (exludes `server_app.py` for sprint 1)
+- add tests for methods
