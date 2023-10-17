@@ -26,7 +26,7 @@ class SessionManager:
             Session: The created session object.
         """
         session = Session(user_id, is_active)
-        self.session.add(session)  
+        self.object_mapper.add(session)  
         return session
         
 
@@ -40,7 +40,7 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        session = self.object_mapper.get(Session, id=session_id)
+        session = self.object_mapper.get(Session)
         return session
         
         
@@ -55,7 +55,7 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        all_sessions = self.object_mapper.get('Session')
+        all_sessions = self.object_mapper.get(Session)
         for session_data in all_sessions:
             if session_data['user_id'] == user_id:
                 # Create a Session object from the retrieved data
@@ -72,3 +72,4 @@ class SessionManager:
             session (Session): The session object to update.
         """
         self.object_mapper.add(session)
+
