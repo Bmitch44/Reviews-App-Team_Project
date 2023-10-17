@@ -12,7 +12,10 @@ class UserInfo:
         Args:
             db_path (str): The path to the database where user information is stored.
         """
-        pass
+        self.db_path = db_path
+        self.object_mapper = ObjectMapper(self.db_path)
+        self.session_manager = SessionManager(self.db_path)
+
 
     def register(self, username, email, password):
         """
@@ -26,7 +29,11 @@ class UserInfo:
         Returns:
             User: The User object representing the registered user.
         """
-        pass
+        hashed_password = self._hash_password(password)
+        user = User(username, email, hashed_password)
+        self.object_mapper.add(user)
+        
+        return user
 
     def login(self, username, password):
         """
@@ -39,7 +46,15 @@ class UserInfo:
         Returns:
             SessionManager: The SessionManager object if login is successful, None otherwise.
         """
-        pass
+        
+        user = self.object_mapper.get(User, username)
+        
+        if user and self._verify_password(user.password, password):
+            # Create a new session
+            session = self.session_manager.create_session(user.id)
+            return self.session_manager
+
+        return None
 
     def logout(self, session_id):
         """
@@ -48,7 +63,11 @@ class UserInfo:
         Args:
             session_id (str): The ID of the session to be invalidated.
         """
-        pass
+        session = self.session_manager.get_session(session_id)
+        if session:
+            session.is_terminated = True
+            self.session_manager.update_session(session)
+            
 
     def _hash_password(self, password, salt=None):
         """
@@ -61,7 +80,10 @@ class UserInfo:
         Returns:
             str: The hashed password.
         """
-        pass
+        if salt is None:
+            salt = os.urandom(16)
+        hashed_password = hashlib.md5(password.encode('utf-8') + salt).hexdigest()
+        return salt + hashed_password
 
     def _verify_password(self, stored_password, provided_password):
         """
@@ -74,4 +96,7 @@ class UserInfo:
         Returns:
             bool: True if the provided password matches the stored password, False otherwise.
         """
-        pass
+        salt = stored_password[:16]
+        stored_hashed_password = stored_password[16:]
+        hashed_provided_password = hashlib.md5(provided_password.encode('utf-8') + salt).hexdigest()
+        return stored_hashed_password == hashed_provided_password
