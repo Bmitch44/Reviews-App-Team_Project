@@ -23,4 +23,5 @@
 | Brady Mitchelmore | completed `test_object_mapper.py` and updated `test_data_store.py` to account for changes | test/ |
 | Cody Cribb | added `src/server` folder with 2 files: `__init__.py` and `server_app.py` | src/server |
 | Cody Cribb | added the implementation for methods of the `server_app.py` file, such as home, login register, as well as the methods relating to reviews and topics. | src/server/server_app.py
-| Cody Cribb | added the routing for the methods listed above. | src/server/server_app.py |git checko
+| Cody Cribb | added the routing for the methods listed above. | src/server/server_app.py |
+| Mayesha Jashim | Added unittests `test_session_management.py` and `test_user_info.py` | test/
