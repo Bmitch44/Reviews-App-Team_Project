@@ -21,3 +21,4 @@
 | Brady Mitchelmore | updated `db_schema.py` to use TEXT PRIMARY ID instead of INTEGER | src/data_management/db_schema.py |
 | Brady Mitchelmore | updated data_management files to account for the INTEGER to TEXT change | src/data_management/ |
 | Brady Mitchelmore | completed `test_object_mapper.py` and updated `test_data_store.py` to account for changes | test/ |
+|Mayesha Jashim | Added `test_user_info.py` and `test_session_management.py` | test/ |
