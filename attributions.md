@@ -26,3 +26,4 @@
 | Cody Cribb | added the routing for the methods listed above. | src/server/server_app.py |
 | Mayesha Jashim | Added unittests `test_session_management.py` and `test_user_info.py` | test/ |
 | Mayesha JAshim | Modified `user_info.py` to use hashlib.pbkdf2_hmac for hashed password. | src/user_management/user_info.py |
+| Martha Snelgrove | Performance review added | perf_reviews/martha-reviews.md|

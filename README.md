@@ -15,6 +15,10 @@ $ python3 -m unittest test/<test_file_name.py>
 ```
 
 ## Individual Contributions
+
+### Performance Reviews
+Performance reviews will be found under the perf_reviews folder. Each member will add a file with their performance reviews of the rest of the group.
+
 ### Brady:
 #### Implementations:
 - `src/data_management/db_schema.py`

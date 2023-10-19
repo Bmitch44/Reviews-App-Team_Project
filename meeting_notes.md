@@ -112,7 +112,8 @@ We will use the code from challenge 9 to create a working web-server to initiali
 
 ## Agenda Items
 - Vansh will be next SCRUM master
-- reviewed each others code, made sure code sections integrate correctly
+- reviewed each others code made notes of changes to be made to make sure code sections will integrate correctly tomorrow
+- Deadline for initial code tomorrow, all code should be submitted to allow group to debug on the 18-20th
 
 ## SCRUM Notes
 -we will add task to comment code and make it PEP8 complient
