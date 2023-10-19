@@ -143,3 +143,29 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - app_logic and data_management now implemented
 - assigned tasks to create unit tests for our methods, includes 1 succcess and 1 failure case ofr each method. (exludes `server_app.py` for sprint 1)
 - add tests for methods
+
+---
+
+## Oct 19, 2023 
+**Recorded by:** Cody Cribb 
+**Notes submiited on:** Oct 19, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Performance reviews.
+- Final integration of bug fixes.
+- Reassigning unfinished tasks.
+
+## Agenda Items
+- Folder will be created for everyone to add a markdown file to for performance reviews.
+- File integration, in a code review, we checked code for bugs and made issues on the KanBan board to fix them. 
+- Action items from team members were left unfinished and were reassigned to Cody with Brady's support. 
+
+## Scrum Notes
+- Issues were created for individual performance reviews.
+- Bugs added.
+- HTML and template tasks were reassigned. 
