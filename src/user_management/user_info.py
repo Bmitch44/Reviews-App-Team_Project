@@ -82,7 +82,7 @@ class UserInfo:
         """
         if salt is None:
             salt = os.urandom(16)
-        hashed_password = hashlib.md5(password.encode('utf-8') + salt).hexdigest()
+        hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
         return salt + hashed_password
 
     def _verify_password(self, stored_password, provided_password):
@@ -97,6 +97,6 @@ class UserInfo:
             bool: True if the provided password matches the stored password, False otherwise.
         """
         salt = stored_password[:16]
-        stored_hashed_password = stored_password[16:]
-        hashed_provided_password = hashlib.md5(provided_password.encode('utf-8') + salt).hexdigest()
-        return stored_hashed_password == hashed_provided_password
+        stored_password = stored_password[16:]
+        hashed_provided_password = self._hash_password(provided_password, salt)
+        return stored_password == hashed_provided_password[16:]
