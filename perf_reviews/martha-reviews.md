@@ -1,0 +1,13 @@
+# Performance Reviews
+
+## Brady Mitchelmore
+Brady attended meetings and fufilled his role as both note taker and SCRUM master. Overall, Brady was really good to work with. He has prior experience with github so took the lead on setting up our kanban board and code reviews system. He also has a good understanding of python and helped me understand some concepts used in my code when integrating our code sections. When Vansh's html and template tasks were unfinished at the groups 17th code deadline he worked with cody to get them completed so we would have a working produt for the classes dealine on the 20th.
+
+## Mayesha Jashim
+Mayesha attended meetings and fufilled his role as both note taker and SCRUM master. Overall, Mayesha was pleasent to work with, she was a bit quiet in meetings but completed all assigned tasks. I had a good time working with her, didn't have much direct crossover with each others code, but during reviews she and her code were clear. She was prompt when responding to messages and helpful whenever clarifications were needed. Her sections were later being completed then others but were still done in time of the deadline. 
+
+## Cody Cribb
+Cody attended meetings and fufilled his role as both note taker and SCRUM master. Overall, Cody was helpful and clear in his work. He contributed in meetings and comleted all assigned tasks in time for the due dates. During code reviews he was helpful and clear to follow. He is always prompt when asked for questions or clarifications or to review a pull request. When tasks remained unfinished partially blocking his work at our internal dealine he stepped up with Brady to get the templates done so all of the code could be comlpeted. 
+
+## Vansh Chaudhary
+Vansh attended some early meetings that were moved online when he expressed concerns about making it to class for certain dates. However, throughout the project he stopped responding to communications and letting us know if he needed an online meeting. When attempts were made to contact him to ask about his code we received no responses. As we had nothing from him in terms of code or stubs as of the 17th dealine we reassigned his tasks to Cody with Brady supporting him as the lack of templates was a blocker for Cody's work. As of the 19th we have still not received any communications and are unclear if he is going to be continuing the course for the rest of the semester.
