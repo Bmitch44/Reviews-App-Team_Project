@@ -1,0 +1,13 @@
+# Performance Reviews
+
+## Martha Snelgrove
+Martha was a pleasure to work with throughout the project. She attended all meetings and actively participated both as a note-taker and SCRUM master. In terms of technical contributions, Martha provided her stubs many days before the pull request deadline. She was responsible for implementing the application logic classes and managed to do so with minimal errors. Although she was a bit late in getting the data properties done, she managed to complete them eventually. Martha also took the initiative to write tests for her module, ensuring code quality and reliability. Martha did quite get the @proprty decorator at first, which I explained to her, after she demenstrated a strong understanding of it.
+
+## Cody Cribb
+Cody was also a pleasure to work with. He attended all our meetings and fulfilled his role as a note-taker and SCRUM master. Cody was proactive, providing a minimal server many days before our pull request deadline. He implemented the server, including all routes, and even stepped up to help complete the templates, which Vansh did not finish. While some errors were found in his work, he managed to complete all tasks. Cody was not required to write tests during the first sprint but was prompt in responding to questions, clarifications, and reviewing pull requests. Cody ran into some issues with the routes in which I helped him understand how to connect functions to requests, which he quickly got the hang of.
+
+## Mayesha Jashim
+Mayesha was a pleasure to work with and attended all scheduled meetings. She played her role well as a note-taker and SCRUM master. Technically, she provided her stubs many days before the pull request deadline, which helped in planning the tasks. Mayesha worked on implementing the user flow and session management, although some errors were found that will need to be addressed. Importantly, she wrote multiple tests for her modules, showing a commitment to code quality. Mayesha had her implemntations complete on time, but was late in creating her tests for her modules which led to undetected bugs in her code.
+
+## Vansh Chaudhary
+Vansh's performance was unsatisfactory. Despite attending the first three meetings, he missed the next three and ceased all communication, causing frustration within the team. Vansh never provided any stubs and made no contributions to the project. He did not participate as either a note-taker or SCRUM master. Due to his lack of contribution, his workload had to be redistributed, which I personally had to share with Cody to keep the project on track.
