@@ -114,7 +114,7 @@ class DataStore:
                     query += self._construct_where_clause(table_name, id)
                 cursor.execute(query)
                 rows = cursor.fetchall()
-                return [dict(row) for row in rows] if rows else None
+                return [dict(row) for row in rows]
             except sqlite3.Error as e:
                 print(f"Error loading data from table {table_name}: {str(e)}")
                 return None
