@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from src.data_management import db_schema
 
@@ -39,6 +40,10 @@ class DataStore:
         """
         Creates the necessary tables in the database by executing the table schemas.
         """
+        # check if database folder exists, if not make one
+        if not os.path.exists("src/database"):
+            os.makedirs("src/database")
+
         with SQLiteConnection(self.db_path) as connection:
             cursor = connection.cursor()
             for table in self.TABLES.values():
