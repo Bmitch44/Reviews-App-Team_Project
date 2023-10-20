@@ -36,9 +36,8 @@ class TestUserMapper(TestCase):
     def test_get_failure(self):
         # to be implemented when logic is implemented:
         user = User("testuser", "testpassword", "testemail")
-        user_id = user.id
         self.object_mapper.add(user)
-        self.assertRaises(ValueError, self.object_mapper.get, user, id='2')
+        self.assertEqual(self.object_mapper.get(User, id=2), [])
 
     def test_remove_success(self):
         # to be implemented when logic is implemented:
