@@ -51,7 +51,7 @@ class TestAppLogic(TestCase):
             "user_id" : self.user_id,
             "created_at" : self.created_at,
             "expires_at" : self.expires_at,
-            "last_activity" : self.last_activity,
+            "last_activity_at" : self.last_activity_at,
             "is_active" : self.is_active,
         }
 
