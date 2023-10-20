@@ -39,7 +39,7 @@ class User:
         return data
 
     
-class Reviews:
+class Review:
     """
     A review in the system
     """
