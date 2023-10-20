@@ -1,0 +1,15 @@
+## Martha Snelgrove
+Martha was great to work with for the entire first sprint. Martha participated as both SCRUM master and as
+note-taker and also attended every team meeting. Martha was adept at getting her code up and running quickly, along with the STUB implementations. Martha took the initiative to get unit tests up and running. During code reviews, she adequately explained her code to the group so that everyone could understand it. Although some changes were made after the pull request deadline, I feel that these changes are fine since they do not functionally make any differences in the code and only serve to fix some minor errors and bugs. Martha was responsible for implementing app_logic.py (the app logic for the web server).
+
+
+## Mayesha Jashim
+Mayesha was great to work with for the entire first sprint as well. Mayesha participated as both SCRUM master and note-taker, and also attended every team meeting. Mayesha was adept at getting STUB implementations finished quickly. Mayesha also took initiative in getting unit tests up and running. Although these unit tests were submitted after the deadline, I don't believe that this is a major issue since the actual working/main code remains unchanged. During code reviews, she adequately explained her code to the group so that everyone could understand it. Although session_management remains unfinished, it would be unreasonable to expect Mayesha to finish two different tasks or responsibilities in the form of session_management implementation and user_info implementation, when most other members only had one file to take care of.
+
+
+## Brady Mitchelmore
+Brady was great to work with for the entire first sprint. Brady participated as both SCRUM master and note-taker, and also attended every team meeting. Brady had his code and STUBs implemented extremely quickly and was always willing to lend a helping hand with any issues faced. Brady explained his code well in code reviews, making sure we all understood its purpose and how to work with it. When tasks remained unfinished due to the absence of Vansh at the end of the sprint—tasks that I required to complete my implementation—Brady worked with me to get them up and running and fill the gap, so I was able to complete my duties on time. Brady was responsible for the data management classes for the server.
+
+
+## Vansh Chaudhary
+Vansh's performance was unfortunately not up to par. Vansh did not participate as a scrum master or note-taker. Despite showing up to the first three meetings, he was absent from any meetings after that and did not respond to any attempts at contact, despite multiple attempts being made by group members. No progress was made on his assigned responsibilities, and both me and Brady had to take over on this front and attempt to implement the HTML templates so that I could get a server working. As stated above, Vansh was responsible for implementing the HTML templates for use on the server.
