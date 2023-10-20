@@ -2,7 +2,7 @@
 
 <h2>Edit Your Review</h2>
 
-<form action="/edit_review/{{review.id}}" method="post">
+<form action="/reviews/{{review.id}}/edit" method="post">
     <label for="review_text">Review:</label>
     <textarea id="review_text" name="review_text" rows="4" cols="50">{{review.review_text}}</textarea>
     <input type="submit" name="save" value="Save Draft">

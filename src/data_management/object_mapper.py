@@ -84,7 +84,7 @@ class ObjectMapper:
         try:
             obj_type = self._get_obj_type(obj_class)
             data = self.data_store.load(obj_type, id=id)
-            if not data:
+            if data is None:
                 raise ValueError(f"{obj_type} with id {id} not found")
             result = [obj_class(**obj_data) for obj_data in data]
             return result[0] if id else result
