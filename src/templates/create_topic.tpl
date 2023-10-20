@@ -1,6 +1,6 @@
 % rebase('base_logged_in.tpl', title='Create Topic')
 
-<form action="/create_topic" method="post">
+<form action="/topics/create" method="post">
     <div>
         <label for="name">Topic Name:</label>
         <input type="text" id="name" name="name" required>

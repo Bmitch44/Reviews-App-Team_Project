@@ -3,7 +3,7 @@
 <h2>Your Reviews</h2>
 
 <!-- Filter Buttons -->
-<form action="/list_reviews" method="post">
+<form action="/reviews" method="post">
     <input type="submit" name="filter" value="all" {{ 'checked' if filter_criteria == 'all' else '' }}> All 
     <input type="submit" name="filter" value="published" {{ 'checked' if filter_criteria == 'published' else '' }}> Published 
     <input type="submit" name="filter" value="draft" {{ 'checked' if filter_criteria == 'draft' else '' }}> Draft
@@ -15,7 +15,7 @@
     <li>
         {{review.review_text}}
         % if review.status == 'draft':
-            <a href="/edit_review/{{review.id}}">Edit</a>
+            <a href="/reviews/{{review.id}}/edit">Edit</a>
         % end
     </li>
 % end
