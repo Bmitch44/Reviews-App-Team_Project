@@ -3,7 +3,7 @@ from unittest import TestCase
 from src.data_management.object_mapper import ObjectMapper
 
 # to be implemented when logic is implemented:
-from src.app_logic.app_logic import User, Reviews, Topic
+from src.app_logic.app_logic import User, Review, Topic
 
 class TestUserMapper(TestCase):
     
