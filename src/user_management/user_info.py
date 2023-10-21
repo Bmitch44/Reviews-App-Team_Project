@@ -106,7 +106,5 @@ class UserInfo:
         """
         decoded_password = base64.b64decode(stored_password.encode('utf-8'))
         salt = stored_password[:16]
-        stored_password = stored_password[16:]
-        hashed_provided_password = self._hash_password(provided_password, salt)
-        return stored_password == hashed_provided_password
+        return stored_password == self.hashed_password[provided_password,salt]
     
