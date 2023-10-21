@@ -105,6 +105,6 @@ class UserInfo:
             bool: True if the provided password matches the stored password, False otherwise.
         """
         decoded_password = base64.b64decode(stored_password.encode('utf-8'))
-        salt = stored_password[:16]
-        return stored_password == self.hashed_password[provided_password,salt]
+        salt = decoded_password[:16]
+        return self._hash_password(provided_password, salt) == decoded_password
     
