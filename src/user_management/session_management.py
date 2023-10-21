@@ -25,7 +25,7 @@ class SessionManager:
         Returns:
             Session: The created session object.
         """
-        session = Session(user_id, is_active)
+        session = Session(user_id=user_id, is_active=is_active)
         self.object_mapper.add(session)  
         return session
         
@@ -40,7 +40,7 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        session = self.object_mapper.get(Session, id= session_id)
+        session = self.object_mapper.get(Session, id=session_id)
         
         return session
         
@@ -61,7 +61,7 @@ class SessionManager:
             if session.user_id == user_id:
                 session.is_active = 1
                 self.update_session(session)
-                return sessions
+                return session
         return None
         
 

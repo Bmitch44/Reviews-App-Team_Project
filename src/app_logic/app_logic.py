@@ -128,7 +128,7 @@ class Session:
         self.created_at = created_at or datetime.datetime.now()
         self.expires_at = expires_at or (self.created_at 
                                          + datetime.timedelta(hours=1))
-        self.last_activity = last_activity_at or datetime.datetime.now()
+        self.last_activity_at = last_activity_at or datetime.datetime.now()
         self.is_active = is_active
         self.session_id = session_id or uuid.uuid4().hex
 
