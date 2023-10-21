@@ -32,8 +32,8 @@ class UserInfo:
         """
         hashed_password = self._hash_password(password)
         user = User(username, email, hashed_password)
-        self.object_mapper.add(user)
-        
+        result = self.object_mapper.add(user)
+        self.session_management.create_session(user.id, is_active=0)
         return user
 
     def login(self, username, password):
@@ -48,13 +48,19 @@ class UserInfo:
             SessionManager: The SessionManager object if login is successful, None otherwise.
         """
         
-        user = self.object_mapper.get(User, username)
-        
-        if user and self._verify_password(user.password, password):
-            # Create a new session
-            self.session_management.create_session(user.id)
-            return self.session_management
-
+        users = self.object_mapper.get(User)
+        print(f"Users:{users}\nID: {users[0].id}")
+        for user in users:
+            if user.username == username and self._verify_password(user.hashed_password, password):
+                user_session = self.session_management.get_user_session(user.id)
+                print(f"User session: {user_session}")
+            if user_session:
+                user_session.is_active = 1
+                return user_session.session_id
+            else:
+                session = self.session_management.create_session(user.id)
+                session.is_active =1
+                return session.session_id
         return None
 
     def logout(self, session_id):
@@ -66,7 +72,7 @@ class UserInfo:
         """
         session = self.session_management.get_session(session_id)
         if session:
-            session.is_terminated = True
+            session.is_active = 0
             self.session_management.update_session(session)
             
 
