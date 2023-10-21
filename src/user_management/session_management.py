@@ -40,7 +40,8 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        session = self.object_mapper.get(Session)
+        session = self.object_mapper.get(Session, id= session_id)
+        
         return session
         
         
