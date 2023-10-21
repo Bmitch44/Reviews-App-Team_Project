@@ -1,5 +1,6 @@
 import hashlib
 import os
+import base64
 from src.app_logic.app_logic import User
 from src.user_management.session_management import SessionManager
 from src.data_management.object_mapper import ObjectMapper
@@ -14,7 +15,7 @@ class UserInfo:
         """
         self.db_path = db_path
         self.object_mapper = ObjectMapper(self.db_path)
-        self.session_manager = SessionManager(self.db_path)
+        self.session_management = SessionManager(self.db_path)
 
 
     def register(self, username, email, password):
@@ -51,8 +52,8 @@ class UserInfo:
         
         if user and self._verify_password(user.password, password):
             # Create a new session
-            session = self.session_manager.create_session(user.id)
-            return self.session_manager
+            self.session_management.create_session(user.id)
+            return self.session_management
 
         return None
 
@@ -63,10 +64,10 @@ class UserInfo:
         Args:
             session_id (str): The ID of the session to be invalidated.
         """
-        session = self.session_manager.get_session(session_id)
+        session = self.session_management.get_session(session_id)
         if session:
             session.is_terminated = True
-            self.session_manager.update_session(session)
+            self.session_management.update_session(session)
             
 
     def _hash_password(self, password, salt=None):
@@ -83,7 +84,8 @@ class UserInfo:
         if salt is None:
             salt = os.urandom(16)
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-        return salt + hashed_password
+        return base64.b64encode(salt + hashed_password).decode('utf-8')
+
 
     def _verify_password(self, stored_password, provided_password):
         """
@@ -96,7 +98,9 @@ class UserInfo:
         Returns:
             bool: True if the provided password matches the stored password, False otherwise.
         """
+        decoded_password = base64.b64decode(stored_password.encode('utf-8'))
         salt = stored_password[:16]
         stored_password = stored_password[16:]
         hashed_provided_password = self._hash_password(provided_password, salt)
-        return stored_password == hashed_provided_password[16:]
+        return stored_password == hashed_provided_password
+    
