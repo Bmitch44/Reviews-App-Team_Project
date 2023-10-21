@@ -56,12 +56,11 @@ class SessionManager:
         Returns:
             Session: The session object if found, None otherwise.
         """
-        all_sessions = self.object_mapper.get(Session)
-        for session_data in all_sessions:
-            if session_data['user_id'] == user_id:
-                # Create a Session object from the retrieved data
-                session = Session(**session_data)
-                return session
+        sessions = self.object_mapper.get(Session)
+        for session_data in sessions:
+            if sessions.user_id == user_id:
+                sessions.is_active = 1
+                return sessions
         return None
         
 
