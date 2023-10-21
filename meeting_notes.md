@@ -70,7 +70,8 @@ We will use the code from challenge 9 to create a working web-server to initiali
 
 ### SCRUM Notes
 - STUBs were assigned in KanBan board, discussed how they would work together
-- KanBan board assignments were tasked to different group members regarding responsibilities. 
+- KanBan board assignments were tasked to different group members regarding responsibilities.
+ 
 ---
 
 ## Oct 12, 2023 
@@ -107,16 +108,17 @@ We will use the code from challenge 9 to create a working web-server to initiali
 **Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
 
 ## Agenda
--review code and progress
--Next SCRUM master
+- Review code and progress
+- Next SCRUM master
 
 ## Agenda Items
 - Vansh will be next SCRUM master
-- reviewed each others code, made sure code sections integrate correctly
+- reviewed each others code made notes of changes to be made to make sure code sections will integrate correctly tomorrow
+- Deadline for initial code tomorrow, all code should be submitted to allow group to debug on the 18-20th
 
 ## SCRUM Notes
--we will add task to comment code and make it PEP8 complient
--add tests for methods
+- We will add task to comment code and make it PEP8 complient
+- Add tests for methods
 
 ---
 
@@ -130,9 +132,9 @@ We will use the code from challenge 9 to create a working web-server to initiali
 **Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
 
 ## Agenda
-- what elements of the first sprint will be completed
-- what tasks, documents, and marking scheme elements will not be completed in time for the first sprint
-- decisions about continuing some tasks into the next sprint
+- What elements of the first sprint will be completed
+- What tasks, documents, and marking scheme elements will not be completed in time for the first sprint
+- Decisions about continuing some tasks into the next sprint
 
 ## Agenda Items
 - The elements of the first sprint that will be complete is the database operations, and a minimal running server
@@ -141,5 +143,31 @@ We will use the code from challenge 9 to create a working web-server to initiali
 
 ## Scrum Notes
 - app_logic and data_management now implemented
-- assigned tasks to create unit tests for our methods, includes 1 succcess and 1 failure case ofr each method. (exludes `server_app.py` for sprint 1)
-- add tests for methods
+- Assigned tasks to create unit tests for our methods, includes 1 succcess and 1 failure case ofr each method. (exludes `server_app.py` for sprint 1)
+- Add tests for methods
+
+---
+
+## Oct 19, 2023 
+**Recorded by:** Cody Cribb 
+**Notes submiited on:** Oct 19, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Performance reviews.
+- Final integration of bug fixes.
+- Reassigning unfinished tasks.
+
+## Agenda Items
+- Folder will be created for everyone to add a markdown file to for performance reviews.
+- File integration, in a code review, we checked code for bugs and made issues on the KanBan board to fix them. 
+- Action items from team members were left unfinished and were reassigned to Cody with Brady's support. 
+
+## Scrum Notes
+- Issues were created for individual performance reviews.
+- Bugs added.
+- HTML and template tasks were reassigned. 

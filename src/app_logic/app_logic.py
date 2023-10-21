@@ -39,7 +39,7 @@ class User:
         return data
 
     
-class Reviews:
+class Review:
     """
     A review in the system
     """
@@ -123,12 +123,12 @@ class Session:
     """
 
     def __init__(self, user_id, created_at = None, expires_at = None, 
-                 last_activity  = None, is_active = 0, session_id = None):
+                 last_activity_at  = None, is_active = 0, session_id = None):
         self.user_id = user_id
         self.created_at = created_at or datetime.datetime.now()
         self.expires_at = expires_at or (self.created_at 
-                                         + datetime.datetime.now())
-        self.last_activity = last_activity or datetime.datetime.now()
+                                         + datetime.timedelta(hours=1))
+        self.last_activity = last_activity_at or datetime.datetime.now()
         self.is_active = is_active
         self.session_id = session_id or uuid.uuid4().hex
 
@@ -152,7 +152,7 @@ class Session:
         data.update({"user_id" : self.user_id,
             "created_at" : self.created_at,
             "expires_at" : self.expires_at,
-            "last_activity" : self.last_activity,
+            "last_activity_at" : self.last_activity_at,
             "is_active" : self.is_active,
         })
 

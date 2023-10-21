@@ -2,7 +2,7 @@ import os
 from unittest import TestCase
 from src.app_logic.app_logic import User
 from src.app_logic.app_logic import Topic
-from src.app_logic.app_logic import Reviews
+from src.app_logic.app_logic import Review
 from src.app_logic.app_logic import Session
 
 class TestAppLogic(TestCase):
@@ -11,7 +11,7 @@ class TestAppLogic(TestCase):
     def setUpClass(cls):
         cls.user = User('Martha','email@gmail.com','password',1)
         cls.topic = Topic('Stocks','They are going up',1,1)
-        cls.reviews = Reviews('this is a test',1,1,"draft",1)
+        cls.review = Review('this is a test',1,1,"draft",1)
         cls.session = Session(1,)
 
     def test_user(self):
@@ -51,7 +51,7 @@ class TestAppLogic(TestCase):
             "user_id" : self.user_id,
             "created_at" : self.created_at,
             "expires_at" : self.expires_at,
-            "last_activity" : self.last_activity,
+            "last_activity_at" : self.last_activity_at,
             "is_active" : self.is_active,
         }
 
