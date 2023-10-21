@@ -21,7 +21,7 @@ import random
 import os
 from bottle import Bottle, run, template, request, redirect, response, static_file, TEMPLATE_PATH
 from src.user_management.user_info import UserInfo
-from src.app_logic.app_logic import Topic, Reviews
+from src.app_logic.app_logic import Topic, Review
 
 TEMPLATE_PATH.insert(0, './src/templates/')
 
@@ -36,9 +36,11 @@ class WebServer(Bottle):
         super().__init__()
         self.TEMPLATES_PATH = os.path.join(os.path.dirname(__file__), '../../templates')
         self.database_path = 'database_path'
+        self.secret = 'secret'
 
         # Route definitions
         self.route('/', callback=self.home)
+        self.route('/home', callback=self.home)
         self.route('/login', callback=self.login)
         self.route('/login', method='POST', callback=self.do_login)
         self.route('/register', callback=self.register)
@@ -48,9 +50,15 @@ class WebServer(Bottle):
         self.route('/topics', callback=self.list_topics)
         self.route('/topics/add', callback=self.show_create_topic_form)
         self.route('/topics/create', method='POST', callback=self.create_topic)
-        self.route('/topics/<topic_id>', callback=self.view_topic)
-        self.route('/topics/<topic_id>/edit/<review_id>', callback=self.show_edit_review_form)
-        self.route('/topics/<topic_id>/edit/<review_id>', method='POST', callback=self.edit_review)
+        self.route('/topics/<topic_id>/create_review', method=['GET', 'POST'], callback=self.create_review)
+        self.route('/reviews', method=['GET', 'POST'], callback=self.list_reviews)
+        self.route('/reviews/<review_id>/edit', method=['GET', 'POST'], callback=self.edit_review)
+        self.route('/logout', method=['GET', 'POST'], callback=self.logout)
+        self.route('/static/<filepath:path>', callback=self.server_static)
+
+    def server_static(self, filepath):
+        """Serve static files."""
+        return static_file(filepath, root='./static/')
 
     def home(self):
         """
@@ -88,15 +96,16 @@ class WebServer(Bottle):
         """
         username = request.forms.get('username')
         password = request.forms.get('password')
-        login_check = UserInfo(self.database_path).login(username, password)
+        session_id = UserInfo(self.database_path).login(username, password)
 
-        if login_check:
+        # set cookie
+        response.set_cookie("session_id", session_id, secret=self.secret)
+
+        if session_id:
             self.logged_in_user = username
             return redirect('/dashboard')
         else:
-            return("No user with this username and password found.") #Should also redirect to login or home
-
-          
+            return redirect('/')
 
     def register(self):
         """
@@ -132,51 +141,57 @@ class WebServer(Bottle):
         Returns:
             str: Response indicating the success or failure of the review creation.
         """
-        if self.logged_in_user:
+        if request.method == 'POST':
             review_content = request.forms.get('review_text')
-            topic = self.topics[topic_id]
-            review = Reviews(self.logged_in_user, review_content)
-            topic.add_review(review)
-            return template(os.path.join(self.TEMPLATES_PATH, 'create_review.tpl'), topic_id=topic_id)
-        else:
-            return redirect('/login')
-        
-    def show_edit_review_form(self, topic_id, review_id):
-        """
-        Display the form for editing a review.
+             # Check which button was clicked
+            if request.forms.get('save'):
+                action = 'Save Draft'
+            elif request.forms.get('publish'):
+                action = 'Publish Review'
+            else:
+                action = None  # No known action
+            
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            user_id = UserInfo(self.database_path).session_manager.get_session(session_id).user_id
 
-        Args:
-            topic_id (int): The ID of the topic to which the review belongs.
-            review_id (int): The ID of the review to be edited.
+            status = "draft" if action == "Save Draft" else "published"
+            review = Review(review_content, user_id, topic_id, status)
 
-        Returns:
-            str: Response displaying the review edit form.
-        """
-        return f"Editing review {review_id} for topic {topic_id}"
-
-    def edit_review(self, topic_id, review_id):
+            UserInfo(self.database_path).object_mapper.add(review)
+            return redirect('/topics')
+        return template('create_review.tpl', title="Create Review", topic_id=topic_id, base="base_logged_in.tpl")
+    
+    def edit_review(self, review_id):
         """
         Edit an existing review.
 
         Args:
-            topic_id (int): The ID of the topic to which the review belongs.
             review_id (int): The ID of the review to be edited.
 
         Returns:
             str: Response indicating the success or failure of the review editing.
         """
+        user_info = UserInfo(self.database_path)
+        review = user_info.object_mapper.get(Review, id=review_id)
 
-        topic_id = int(topic_id)
-        review_id = int(review_id)
-        if 0 <= topic_id < len(self.topics) and 0 <= review_id < len(self.topics[topic_id].reviews):
-            review_text = request.forms.get('review_text')
-            if self.topics[topic_id].reviews[review_id].author == self.logged_in_user:
-                self.topics[topic_id].reviews[review_id].content = review_text
-                return f"Review edited: {review_text}"
-            else:
-                return "You can only edit your own reviews."
-        else:
-            return "Invalid topic ID or review ID."
+        # Ensure the review exists and belongs to the logged-in user
+        if not review:
+            return "Review not found"
+
+        if request.method == 'POST':
+            updated_review_text = request.forms.get('review_text')
+            review.review_text = updated_review_text
+            
+            # Check which button was clicked
+            if request.forms.get('save'):
+                review.status = "draft"
+            elif request.forms.get('publish'):
+                review.status = "published"
+
+            user_info.object_mapper.add(review)
+            
+            return redirect('/reviews')
+        return template('edit_review.tpl', review=review)
         
     def list_topics(self):
         """
@@ -185,9 +200,38 @@ class WebServer(Bottle):
         Returns:
             str: HTML response displaying a list of topics.
         """
-        topics = UserInfo(self.database_path).mapper.get(Topic)
-        reviews = UserInfo(self.database_path).mapper.get(Reviews)
+        topics = UserInfo(self.database_path).object_mapper.get(Topic)
+        raw_reviews = UserInfo(self.database_path).object_mapper.get(Review)
+      
+        reviews = {}
+        for topic in topics:
+            reviews[topic.id] = [review for review in raw_reviews if review.topic_id == topic.id and review.status == "published"]
         return template('list_topics.tpl', title="Topics", topics=topics, reviews=reviews, base="base_logged_in.tpl")
+
+    def list_reviews(self):
+        """
+        List all reviews available.
+
+        Returns:
+            str: HTML response displaying a list of reviews.
+        """
+        filter_criteria = request.forms.get('filter') or 'all'
+
+        #get session id from cookie
+        session_id = request.get_cookie("session_id", secret=self.secret)
+        user_id = UserInfo(self.database_path).session_manager.get_session(session_id).user_id
+        reviews = UserInfo(self.database_path).object_mapper.get(Review)
+
+        if filter_criteria == 'all':
+            reviews = [review for review in reviews if review.user_id == user_id]
+        elif filter_criteria == 'published':
+            reviews = [review for review in reviews if review.user_id == user_id and review.status == "published"]
+        elif filter_criteria == 'draft':
+            reviews = [review for review in reviews if review.user_id == user_id and review.status == "draft"]
+        else:
+            reviews = []
+
+        return template('list_reviews.tpl', title="Reviews", reviews=reviews, filter_criteria=filter_criteria, base="base_logged_in.tpl")
 
     def show_create_topic_form(self):
         """
@@ -196,7 +240,7 @@ class WebServer(Bottle):
         Returns:
             str: HTML response displaying the topic creation form.
         """
-        return template('create_topic')
+        return template('create_topic.tpl', title="Create Topic", base='base_logged_in.tpl')
 
     def create_topic(self):
         """
@@ -205,26 +249,24 @@ class WebServer(Bottle):
         Returns:
             str: HTML response indicating the success or failure of the topic creation.
         """
-        if self.logged_in_user:
+        if request.method == 'POST':
         
             topic_name = request.forms.get('name')
             topic_description = request.forms.get('description')
-            user_id = UserInfo(self.database_path).session_manager.get_session().user_id
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            user_id = UserInfo(self.database_path).session_manager.get_session(session_id).user_id
             topic = Topic(topic_name, topic_description, user_id)
-            self.topics.append(topic)
-        return redirect(f'/topics/{len(self.topics) - 1}')
-
-    def view_topic(self, topic_id):
-        """
-        View details of a specific topic.
-
-        Args:
-            topic_id (int): The ID of the topic to be viewed.
-
-        Returns:
-            str: Response displaying the details of the specified topic.
-        """
-        return f"Viewing topic with ID {topic_id}"
+            UserInfo(self.database_path).object_mapper.add(topic)
+            return redirect("/topics")
+    
+    def logout(self):
+        if request.method == 'POST':
+            #get session id from cookie
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            UserInfo(self.database_path).logout(session_id)
+            response.delete_cookie("session_id")
+            return redirect('/login')
+        return template('logout.tpl', title="Logout", base="base_logged_in.tpl")
 
 if __name__ == "__main__":
     host_name = "localhost"

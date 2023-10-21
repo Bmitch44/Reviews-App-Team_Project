@@ -6,6 +6,7 @@
 ```
 $ python3 -m src.server.server_app
 ```
+- Once the server is running you will have to register with a name, email, and password. Once registered you will log in and will be redirected to the logged in pages where you can create topics and reviews
 
 ## Running Tests:
 - navigate to the root directory `TEAM-PROJECT-TEAML/`

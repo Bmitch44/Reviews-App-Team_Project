@@ -87,7 +87,9 @@ class ObjectMapper:
             if data is None:
                 raise ValueError(f"{obj_type} with id {id} not found")
             result = [obj_class(**obj_data) for obj_data in data]
-            return result[0] if id else result
+            if result and id:
+                return result[0]
+            return result
         except Exception as e:
             print(f"Error retrieving {obj_type}: {str(e)}")
             raise e

@@ -65,7 +65,7 @@ class TestDataStore(TestCase):
         self.assertTrue(self.data_store.save(user_data, "user"))
         self.data_store.clear_tables()
         loaded_users = self.data_store.load("user")
-        self.assertEqual(loaded_users, None)
+        self.assertEqual(loaded_users, [])
 
     def test_delete_success(self):
         user_data = {
