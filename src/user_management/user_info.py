@@ -54,13 +54,13 @@ class UserInfo:
             if user.username == username and self._verify_password(user.hashed_password, password):
                 user_session = self.session_manager.get_user_session(user.id)
                 print(f"User session: {user_session}")
-            if user_session:
-                user_session.is_active = 1
-                return user_session.session_id
-            else:
-                session = self.session_manager.create_session(user.id)
-                session.is_active =1
-                return session.session_id
+                if user_session:
+                    user_session.is_active = 1
+                    return user_session.session_id
+                else:
+                    session = self.session_manager.create_session(user.id)
+                    session.is_active =1
+                    return session.session_id
         return None
 
     def logout(self, session_id):
@@ -90,7 +90,7 @@ class UserInfo:
         if salt is None:
             salt = os.urandom(16)
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-        return base64.b64encode(salt + hashed_password).decode('utf-8')
+        return salt + hashed_password
 
 
     def _verify_password(self, stored_password, provided_password):
@@ -104,7 +104,6 @@ class UserInfo:
         Returns:
             bool: True if the provided password matches the stored password, False otherwise.
         """
-        decoded_password = base64.b64decode(stored_password.encode('utf-8'))
-        salt = decoded_password[:16]
-        return self._hash_password(provided_password, salt) == decoded_password
+        salt = stored_password[:16]
+        return stored_password == self._hash_password(provided_password, salt)
     
