@@ -1,5 +1,6 @@
 import hashlib
 import os
+import base64
 from src.app_logic.app_logic import User
 from src.user_management.session_management import SessionManager
 from src.data_management.object_mapper import ObjectMapper
@@ -31,9 +32,9 @@ class UserInfo:
         """
         hashed_password = self._hash_password(password)
         user = User(username, email, hashed_password)
-        self.object_mapper.add(user)
-        
-        return user
+        result = self.object_mapper.add(user)
+        self.session_manager.create_session(user.id, is_active=0)
+        return result
 
     def login(self, username, password):
         """
@@ -47,13 +48,19 @@ class UserInfo:
             SessionManager: The SessionManager object if login is successful, None otherwise.
         """
         
-        user = self.object_mapper.get(User, username)
-        
-        if user and self._verify_password(user.password, password):
-            # Create a new session
-            session = self.session_manager.create_session(user.id)
-            return self.session_manager
-
+        users = self.object_mapper.get(User)
+        print(f"Users:{users}\nID: {users[0].id}")
+        for user in users:
+            if user.username == username and self._verify_password(user.hashed_password, password):
+                user_session = self.session_manager.get_user_session(user.id)
+                print(f"User session: {user_session}")
+            if user_session:
+                user_session.is_active = 1
+                return user_session.session_id
+            else:
+                session = self.session_manager.create_session(user.id)
+                session.is_active =1
+                return session.session_id
         return None
 
     def logout(self, session_id):
@@ -65,7 +72,7 @@ class UserInfo:
         """
         session = self.session_manager.get_session(session_id)
         if session:
-            session.is_terminated = True
+            session.is_active = 0
             self.session_manager.update_session(session)
             
 
@@ -83,7 +90,8 @@ class UserInfo:
         if salt is None:
             salt = os.urandom(16)
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-        return salt + hashed_password
+        return base64.b64encode(salt + hashed_password).decode('utf-8')
+
 
     def _verify_password(self, stored_password, provided_password):
         """
@@ -96,7 +104,7 @@ class UserInfo:
         Returns:
             bool: True if the provided password matches the stored password, False otherwise.
         """
-        salt = stored_password[:16]
-        stored_password = stored_password[16:]
-        hashed_provided_password = self._hash_password(provided_password, salt)
-        return stored_password == hashed_provided_password[16:]
+        decoded_password = base64.b64decode(stored_password.encode('utf-8'))
+        salt = decoded_password[:16]
+        return self._hash_password(provided_password, salt) == decoded_password
+    

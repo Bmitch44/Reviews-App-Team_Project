@@ -10,11 +10,11 @@ class TestUserInfo(unittest.TestCase):
     def setUpClass(cls):
         cls.db_path = "test.db"
         cls.object_mapper = ObjectMapper(cls.db_path)
-        cls.session_manager = SessionManager(cls.db_path)
+        cls.session_management = SessionManager(cls.db_path)
         cls.user_info = UserInfo(cls.db_path)
 
     def setUp(self):
-        self.object_mapper.clear_tables()
+        self.object_mapper.data_store.clear_tables()
 
     def test_register(self):
         username = "test_user"
@@ -28,8 +28,8 @@ class TestUserInfo(unittest.TestCase):
         email = "test_user@example.com"
         password = "test_password"
         self.user_info.register(username, email, password)
-        session_manager = self.user_info.login(username, password)
-        self.assertIsInstance(session_manager, SessionManager)
+        session_management = self.user_info.login(username, password)
+        self.assertIsInstance(session_management, SessionManager)
 
     def test_login_failure(self):
         username = "test_user"
@@ -37,17 +37,17 @@ class TestUserInfo(unittest.TestCase):
         password = "test_password"
         self.user_info.register(username, email, password)
         incorrect_password = "incorrect_password"
-        session_manager = self.user_info.login(username, incorrect_password)
-        self.assertIsNone(session_manager)
+        session_management = self.user_info.login(username, incorrect_password)
+        self.assertIsNone(session_management)
 
     def test_logout(self):
         username = "test_user"
         email = "test_user@example.com"
         password = "test_password"
         user = self.user_info.register(username, email, password)
-        session = self.session_manager.create_session(user.id)
-        self.user_info.logout(session.id)
-        retrieved_session = self.session_manager.get_session(session.id)
+        self.session_management.create_session(user.id)
+        self.user_info.logout(user.id)
+        retrieved_session = self.session_management.get_session(user.id)
         self.assertTrue(retrieved_session.is_terminated)
 
     @classmethod
@@ -56,3 +56,4 @@ class TestUserInfo(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
