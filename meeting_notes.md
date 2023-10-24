@@ -171,3 +171,35 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Issues were created for individual performance reviews.
 - Bugs added.
 - HTML and template tasks were reassigned. 
+
+---
+
+# Sprint 2
+
+## Oct 19, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Oct 19, 2023
+**SCRUM Master:** Martha Snelgrove
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- identify team tasks for 2nd sprint 
+- identify tasks still not completed from sprint 1
+- identify features for 2nd sprint
+- decompose features into coding tasks
+- try to identify possible interface revisions required for coding tasks
+- assign design and coding tasks for 2nd sprint and set deadlines for activities
+- especially pull request deadline for final sprint submissions.
+
+## Agenda Items
+- All tasks were complete in sprint 1, excpet vansh performance reviews
+- We need to allow multiple users to be active at the same time
+- We need to be able search for reviews based on users and topics to the best match
+- get tests working effectively, add postman tests for server_app
+- Set up rating reviews templates and routes, adjust db schema as neccessary
+- Revise typehints to match code
+- Tasks will be assigned after concensous on the implementations
+- **Pull Request Deadline - November 7th**
