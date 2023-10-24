@@ -176,9 +176,9 @@ We will use the code from challenge 9 to create a working web-server to initiali
 
 # Sprint 2
 
-## Oct 19, 2023 
+## Oct 24, 2023 
 **Recorded by:** Brady Mitchelmore
-**Notes submiited on:** Oct 19, 2023
+**Notes submiited on:** Oct 24, 2023
 **SCRUM Master:** Martha Snelgrove
 **Venue:**  In Class (EN 2040) 
 **Source:** None 
