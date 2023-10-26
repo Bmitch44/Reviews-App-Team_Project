@@ -203,3 +203,34 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Revise typehints to match code
 - Tasks will be assigned after concensous on the implementations
 - **Pull Request Deadline - November 7th**
+
+---
+
+## Oct 26, 2023 
+**Recorded by:** Cody Cribb 
+**Notes submiited on:** Oct 26, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Distribute tasks to team members.
+- Allowing multiple users to access the server at the same time is functional.
+- Update templates to add rating reviews templates, along with searching functionality for topics and reviews.
+- Separation of concerns. 
+- Get tests working for modules.
+- Fix the issue where users can access dashboard without being logged in.
+
+## Agenda Items
+- Identied tasks still not completed from sprint 1
+- Assigned design and coding tasks for 2nd sprint and set deadlines for activities.
+- Add method that checks if the user is logged in before accessing a specific page.
+- Update data storage to be able to query for reviews based on user and topic.
+
+## SCRUM Notes
+- Ensure tests are running properly. 
+- Create issue related to implementing user review ratings.
+- Create issue related to fixing bugs with server_app.
+- Create issue related to updating data storage.
