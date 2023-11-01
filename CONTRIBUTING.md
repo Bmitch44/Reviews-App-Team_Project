@@ -5,6 +5,10 @@
 - What does this PR do?
 - What issue/task does this resolve?
 
+## How was it reviewed
+
+- What steps were taken to properly review the PR
+
 ## Checklist
 
 - [ ] Tests added/updated?
