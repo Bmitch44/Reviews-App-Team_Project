@@ -234,3 +234,32 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Create issue related to implementing user review ratings.
 - Create issue related to fixing bugs with server_app.
 - Create issue related to updating data storage.
+
+## Oct 31, 2023 
+**Recorded by:** Mayesha Jashim 
+**Notes submiited on:** Nov 1, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:**  In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- review architecture document contributions
+- changes to interfaces entailed by detailed architecture design
+- tasks needed for new interface considerations
+- think of two other functionalities 
+
+## Agenda Items
+- delete button for reviews
+- add comment section for reviews 
+- create github function for automated testing
+- add a ERD diagram for database
+- add CSS styling for aesthetics
+
+## SCRUM Notes
+- create an issue to implement delete button for individual members
+- create an issue to implement comment section for individual members
+- Martha is assigned with making server architecture
+- Brady is assigned with automated testing
+- Martha is assigned with CSS styling
