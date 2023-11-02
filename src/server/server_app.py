@@ -118,16 +118,7 @@ class WebServer(Bottle):
         """
         session_id = request.get_cookie("session_id", secret=self.secret)
     
-        if session_id:
-        # Check if the session ID is valid
-            user_info = UserInfo(self.database_path)
-            session = user_info.session_manager.get_session(session_id)
-        
-            if session:
-                pass
-        
-        # If the session ID is not valid or not found, send back to login page
-        else:
+        if not session_id:
             return redirect('/login')
 
     def register(self):
