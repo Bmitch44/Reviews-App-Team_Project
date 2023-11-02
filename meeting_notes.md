@@ -296,3 +296,27 @@ We will use the code from challenge 9 to create a working web-server to initiali
     - new issue code review templates for pull/merge requests will assign to Brady
     - new issue re-establish label system for issues on kanban board
     - add communication issues to the backlog - assign no one
+
+---
+
+## Nov 2, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Nov 2, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- review feedback from sprint 1
+- plan any adjustments needed to obtain more marks
+
+## Agenda Items
+- discussed feedback from sprint 1, decieded we need to do proper code reviews for each Pull Request
+- familiarized with github workflows to help with code reviews by automating testing and linting
+
+## SCRUM Notes
+- get code to pass the pylint github action
+- added communitcation issue card
+- find out issues with feedback, discuss with professor
