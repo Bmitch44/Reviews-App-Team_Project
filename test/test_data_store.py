@@ -33,7 +33,7 @@ class TestDataStore(TestCase):
             "email": "test_email_1@example.com",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
-        # as long as the required columns are present, the save should succeed, disregarding any extra columns
+        # as long as required columns are present, save should succeed, disregarding extra columns
         user_data["invalid_column"] = "invalid_value"
         self.assertTrue(self.data_store.save(user_data, "user"))
         bad_user_data = {

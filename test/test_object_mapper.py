@@ -33,7 +33,7 @@ class TestUserMapper(TestCase):
         self.assertEqual(self.object_mapper.get(User, id=user_id).data, user.data)
 
     def test_get_failure(self):
-        """tests that data cannot be retrieved from the database if the user is not in the database"""
+        """tests that data cannot be retrieved from the database if the user's not in database"""
         user = User("testuser", "testpassword", "testemail")
         self.object_mapper.add(user)
         self.assertEqual(self.object_mapper.get(User, id=2), [])
