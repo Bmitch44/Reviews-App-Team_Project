@@ -18,6 +18,7 @@ Version:
 """
 
 import random
+import json
 import os
 from bottle import Bottle, run, template, request, redirect, response, static_file, TEMPLATE_PATH
 from src.user_management.user_info import UserInfo
@@ -76,6 +77,7 @@ class WebServer(Bottle):
         Returns:
             str: Response for the dashboard route. (logged_in template)
         """
+        self.login_check()
         return template('base_logged_in.tpl', title="Dashboard", base="Welcome to the dashboard!")
 
     def login(self):
@@ -106,6 +108,18 @@ class WebServer(Bottle):
             return redirect('/dashboard')
         else:
             return redirect('/')
+        
+    def login_check(self):
+        """
+        Implements a check to make sure the user is logged in, prevents access to other pages of the server unless logged in.
+
+        Returns:
+            str: Does nothing if user is logged in, redirects to login page if user is not logged in.
+        """
+        session_id = request.get_cookie("session_id", secret=self.secret)
+    
+        if not session_id:
+            return redirect('/login')
 
     def register(self):
         """
@@ -141,6 +155,8 @@ class WebServer(Bottle):
         Returns:
             str: Response indicating the success or failure of the review creation.
         """
+
+        self.login_check()
         if request.method == 'POST':
             review_content = request.forms.get('review_text')
              # Check which button was clicked
@@ -171,6 +187,7 @@ class WebServer(Bottle):
         Returns:
             str: Response indicating the success or failure of the review editing.
         """
+        self.login_check()
         user_info = UserInfo(self.database_path)
         review = user_info.object_mapper.get(Review, id=review_id)
 
@@ -200,6 +217,7 @@ class WebServer(Bottle):
         Returns:
             str: HTML response displaying a list of topics.
         """
+        self.login_check()
         topics = UserInfo(self.database_path).object_mapper.get(Topic)
         raw_reviews = UserInfo(self.database_path).object_mapper.get(Review)
       
@@ -215,6 +233,7 @@ class WebServer(Bottle):
         Returns:
             str: HTML response displaying a list of reviews.
         """
+        self.login_check()
         filter_criteria = request.forms.get('filter') or 'all'
 
         #get session id from cookie
@@ -240,6 +259,7 @@ class WebServer(Bottle):
         Returns:
             str: HTML response displaying the topic creation form.
         """
+        self.login_check()
         return template('create_topic.tpl', title="Create Topic", base='base_logged_in.tpl')
 
     def create_topic(self):
@@ -249,6 +269,7 @@ class WebServer(Bottle):
         Returns:
             str: HTML response indicating the success or failure of the topic creation.
         """
+        self.login_check()
         if request.method == 'POST':
         
             topic_name = request.forms.get('name')
