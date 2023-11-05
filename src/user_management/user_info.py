@@ -55,21 +55,21 @@ class UserInfo:
                 print(f"User session: {user_session}")
                 if user_session:
                     user_session.is_active = 1
-                    return user_session.session_id
+                    return user_session.id
                 else:
-                    session = self.session_manager.create_session(user.id)
-                    session.is_active =1
-                    return session.session_id
+                    new_session = self.session_manager.create_session(user.id)
+                    new_session.is_active =1
+                    return new_session.id
         return None
 
-    def logout(self, session_id):
+    def logout(self, id):
         """
         Logs out a user by invalidating the session with the given session ID.
 
         Args:
-            session_id (str): The ID of the session to be invalidated.
+            id (str): The ID of the session to be invalidated.
         """
-        session = self.session_manager.get_session(session_id)
+        session = self.session_manager.get_session(id)
         if session:
             session.is_active = 0
             self.session_manager.update_session(session)
