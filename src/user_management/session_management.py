@@ -35,16 +35,16 @@ class SessionManager:
         self.object_mapper.add(session)
         return session
         
-    def get_session(self, session_id: str):
+    def get_session(self, id: str):
         """Retrieves a session by its ID.
 
         Args:
-            session_id (str): The ID of the session to retrieve.
+            id (str): The ID of the session to retrieve.
 
         Returns:
             Session: The session object if found, None otherwise.
         """
-        return self.object_mapper.get(Session, id=session_id)
+        return self.object_mapper.get(Session, id)
         
     def get_user_session(self, user_id: int):
         """Retrieves the session associated with a user.
