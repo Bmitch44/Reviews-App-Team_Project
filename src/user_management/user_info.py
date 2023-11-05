@@ -1,7 +1,7 @@
 import hashlib
 import os
-import base64
-from src.app_logic.app_logic import User
+from typing import List
+from src.app_logic.app_logic import User, Review, Topic
 from src.user_management.session_management import SessionManager
 from src.data_management.object_mapper import ObjectMapper
 
@@ -16,7 +16,6 @@ class UserInfo:
         self.db_path = db_path
         self.object_mapper = ObjectMapper(self.db_path)
         self.session_manager = SessionManager(self.db_path)
-
 
     def register(self, username, email, password):
         """
@@ -74,7 +73,6 @@ class UserInfo:
         if session:
             session.is_active = 0
             self.session_manager.update_session(session)
-            
 
     def _hash_password(self, password, salt=None):
         """
@@ -92,7 +90,6 @@ class UserInfo:
         hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
         return salt + hashed_password
 
-
     def _verify_password(self, stored_password, provided_password):
         """
         Verifies if the provided password matches the stored (hashed) password.
@@ -106,4 +103,35 @@ class UserInfo:
         """
         salt = stored_password[:16]
         return stored_password == self._hash_password(provided_password, salt)
-    
+
+    def search_review(self, user_id: str=None, topic_name: str = None) -> List:
+        """
+        Search for reviews based on user ID or topic name.
+
+        Args:
+            user_id: The ID of the user whose reviews we want to find.
+            topic_name: The name of the topic of the reviews we want to find.
+
+        Returns:
+            A list of Review objects that match the search criteria.
+        """
+        if user_id is None and topic_name is None:
+            raise ValueError("Please provide at least one search criterion: user_id or topic_name.")
+        
+        reviews = []
+        all_reviews = self.object_mapper.get(Review)  # This retrieves all reviews. 
+        all_topics = self.object_mapper.get(Topic)  # This retrieves all topics. 
+
+        # Create a mapping of topic names to topic IDs
+        topic_name_to_id = {topic.name: topic.id for topic in all_topics}
+
+        # Find the topic ID for the corresponding topic name provided
+        topic_id = topic_name_to_id.get(topic_name) if topic_name else None
+
+        for review in all_reviews:
+            if user_id and review.user_id == user_id:
+                reviews.append(review)
+            if topic_id and review.topic_id == topic_id:
+                reviews.append(review)
+        
+        return reviews
