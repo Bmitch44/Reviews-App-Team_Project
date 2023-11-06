@@ -61,9 +61,9 @@ class DataStore:
             int or bool: The last inserted row id if successful, False if an integrity error occurs.
         """
         query, columns = self._construct_insert_query(table_name)
-        data_values = tuple(data[column] for column in columns)
         with SQLiteConnection(self.db_path) as connection:
             try:
+                data_values = tuple(data[column] for column in columns)
                 cursor = connection.cursor()
                 cursor.execute(query, data_values)
                 return True
