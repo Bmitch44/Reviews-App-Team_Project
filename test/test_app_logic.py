@@ -48,7 +48,7 @@ class TestAppLogic(TestCase):
 
     def test_session(self):
         review_data = {
-            "session_id" : 'f',
+            "id" : 'f',
             "user_id" : 'a',
             "created_at" : 'b',
             "expires_at" : 'c',
