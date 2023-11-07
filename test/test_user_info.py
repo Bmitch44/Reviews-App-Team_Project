@@ -5,7 +5,7 @@ It includes tests for user registration, login, logout, and searching reviews.
 import os
 import unittest
 import uuid
-from unittest.mock import patch, Mock
+from unittest.mock import Mock
 
 # Local imports
 from src.user_management.session_management import SessionManager
@@ -62,9 +62,9 @@ class TestUserInfo(unittest.TestCase):
         email = "test_user@example.com"
         password = "test_password"
         self.user_info.register(username, email, password)
-        id = self.user_info.login(username, password)
+        user_id = self.user_info.login(username, password)
         self.user_info.logout(id)
-        retrieved_session = self.session_manager.get_session(id)
+        retrieved_session = self.session_manager.get_session(user_id)
         self.assertFalse(retrieved_session.is_active)
 
     #def test_search_review(self):
@@ -87,7 +87,7 @@ class TestUserInfo(unittest.TestCase):
         mock_review.id = str(uuid.uuid4())
         self.object_mapper.get = Mock()
         self.object_mapper.get.side_effect = (
-            lambda cls: [mock_review] if cls == Review else 
+            lambda cls: [mock_review] if cls == Review else
                         [mock_user] if cls == User else []
         )
 
