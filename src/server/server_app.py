@@ -55,6 +55,7 @@ class WebServer(Bottle):
         self.route('/reviews', method=['GET', 'POST'], callback=self.list_reviews)
         self.route('/reviews/<review_id>/edit', method=['GET', 'POST'], callback=self.edit_review)
         self.route('/reviews/<review_id>/delete', method=['GET', 'POST'], callback=self.delete_review)
+        self.route('/reviews/search', method=['GET', 'POST'], callback=self.search_review)
         self.route('/logout', method=['GET', 'POST'], callback=self.logout)
         self.route('/static/<filepath:path>', callback=self.server_static)
 
@@ -246,6 +247,21 @@ class WebServer(Bottle):
             return redirect('/reviews')
         reviews = self.user_info.object_mapper.get(Review)
         return template('list_reviews.tpl', reviews=reviews, filter_criteria="all", request=request, base="base_logged_in.tpl")
+    
+    def search_review(self):
+        """
+        Searches for a review based on the provided query.
+
+        Returns:
+            str: HTML response displaying a list of topics that abide by the filter criteria.
+        
+        """
+        if request.method == 'POST':
+            query = request.forms.get('query')
+            filter_criteria = request.forms.get('filter') or 'all'
+            reviews = UserInfo(self.database_path).search_reviews(query)
+            reviews = [review for review in reviews if review.status != "draft"]
+            return template('list_reviews.tpl', title="Reviews", reviews=reviews, filter_criteria=filter_criteria, base="base_logged_in.tpl")
         
     def list_topics(self):
         """
