@@ -11,7 +11,7 @@ class SessionManager:
         db_path (str): The path to the database where session data is stored.
         object_mapper (ObjectMapper): An instance of ObjectMapper to handle database operations.
     """
-    
+ 
     def __init__(self, db_path: str):
         """Initializes a new SessionManager instance.
 
@@ -36,7 +36,8 @@ class SessionManager:
         return session
         
     def get_session(self, id: str):
-        """Retrieves a session by its ID.
+        """
+        Retrieves a session by its ID.
 
         Args:
             id (str): The ID of the session to retrieve.
@@ -45,7 +46,7 @@ class SessionManager:
             Session: The session object if found, None otherwise.
         """
         return self.object_mapper.get(Session, id)
-        
+
     def get_user_session(self, user_id: int):
         """Retrieves the session associated with a user.
 
