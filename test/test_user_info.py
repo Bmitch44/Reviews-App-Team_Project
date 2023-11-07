@@ -1,19 +1,23 @@
+"""
+This module contains unittests for the user information functions.
+It includes tests for user registration, login, logout, and searching reviews.
+"""
 import os
 import unittest
 import uuid
-import json
+from unittest.mock import patch, Mock
 
 # Local imports
 from src.user_management.session_management import SessionManager
 from src.data_management.object_mapper import ObjectMapper
 from src.user_management.user_info import UserInfo
-from src.app_logic.app_logic import Review, User 
+from src.app_logic.app_logic import Review, User
 
 class TestUserInfo(unittest.TestCase):
     """
     Test cases for user information management functionalities.
     """
-    
+
     @classmethod
     def setUpClass(cls):
         """
@@ -62,40 +66,33 @@ class TestUserInfo(unittest.TestCase):
         self.user_info.logout(id)
         retrieved_session = self.session_manager.get_session(id)
         self.assertFalse(retrieved_session.is_active)
-        
+
+    #def test_search_review(self):
     def test_search_review(self):
         """
-        Test the search_review() function from user_info by creating a user and a review,
-        and then searching for the review by username.
+        Test the search_review function to ensure it returns reviews matching a username query.
+
+        This test creates a mock user and a mock review. It then mocks the object_mapper.get method
+        to return these objects when queried. Finally, it calls the search_review method with the
+        username of the mock user to ensure that the corresponding review is returned.
         """
-        # Setup for the test
-        # Create a UserInfo instance and any other necessary setup steps
-        self.user_info = UserInfo(self.object_mapper)
-
-        # Create a user
-        test_user = User(
-            username="testuser123", email = "test_user@example.com",
-            hashed_password="test_password")  # Add other required attributes
-        self.object_mapper.add(test_user)
-
-        # Create a review written by the user
-        test_review = Review(
-            review_text="This is a test review.",
-            user_id=test_user.id,
-            topic_id=str(uuid.uuid4()),  # Random UUID for the topic_id
-            status="draft",
-            review_ratings=json.dumps([]),  # JSON representation of an empty ratings list
-            id=str(uuid.uuid4())  # Random UUID for the review ID
+        mock_user = User(username="test_user",
+                        email="test_user@example.com",
+                        hashed_password="test_password")
+        mock_user.id = str(uuid.uuid4())
+        mock_review = Review(review_text="This is a review.",
+                             user_id=mock_user.id,
+                             topic_id=str(uuid.uuid4()),
+                             status="published")
+        mock_review.id = str(uuid.uuid4())
+        self.object_mapper.get = Mock()
+        self.object_mapper.get.side_effect = (
+            lambda cls: [mock_review] if cls == Review else 
+                        [mock_user] if cls == User else []
         )
-        # You will need to implement a method to add a review in your data store or mock database
-        self.object_mapper.add(test_review)
 
-        # Test with username as query
-        query = test_user.username
-        actual_results = self.user_info.search_review(query)
-
-        # Check if the actual results contain the expected review
-        self.assertTrue(any(review.id == test_review.id for review in actual_results))
+        result = self.user_info.search_review(mock_user.username)
+        self.assertTrue(review.id == mock_review.id for review in result)
 
     @classmethod
     def tearDownClass(cls):
@@ -106,4 +103,3 @@ class TestUserInfo(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
