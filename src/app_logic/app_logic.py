@@ -1,5 +1,6 @@
 import datetime
 import uuid
+import json
 
 class User:
     """
@@ -7,7 +8,7 @@ class User:
     """
 
     def __init__(self, username: str, email:str, hashed_password: str, 
-                 id: int=None):
+                 id: str=None):
         self.username = username
         self.email = email
         self.hashed_password = hashed_password
@@ -44,13 +45,19 @@ class Review:
     A review in the system
     """
 
-    def __init__(self, review_text: str, user_id: int, topic_id: int, 
-                 status: str = "draft", id: int = None):
+    def __init__(self, review_text: str, user_id: str, topic_id: str, 
+                 status: str = "draft", review_ratings: str = None, 
+                 id: str = None):
         self.review_text = review_text
         self.user_id = user_id
         self.topic_id = topic_id
         self.status = status
+        self.review_ratings = review_ratings or '[]'
         self.id = id or uuid.uuid4().hex
+    
+    @property
+    def ratings(self):
+        return json.loads(self.review_ratings)
 
     @property
     def data(self):
@@ -73,7 +80,8 @@ class Review:
             "review_text" : self.review_text,
             "user_id" : self.user_id,
             "topic_id" : self.topic_id,
-            "status" : self.status
+            "status" : self.status,
+            "review_ratings" : self.review_ratings
         })
 
         return data
@@ -84,8 +92,8 @@ class Topic:
     a topic in the system 
     """
     
-    def __init__(self, name: str, description: str, user_id: int, 
-                 id: int = None):
+    def __init__(self, name: str, description: str, user_id: str, 
+                 id: str = None):
         self.name = name
         self.description = description
         self.user_id = user_id

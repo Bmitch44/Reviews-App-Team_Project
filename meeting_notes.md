@@ -263,3 +263,84 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Martha is assigned with making server architecture
 - Brady is assigned with automated testing
 - Martha is assigned with CSS styling
+
+---
+
+## Nov 1, 2023 
+**Recorded by:** Martha Snelgrove
+**Notes submiited on:** Nov 1, 2023
+**SCRUM Master:** Mayesha Jashim
+**Venue:**  Library study room
+**Source:** None 
+**Time:**  3-4 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Establish new code review standards
+- What is a user story and how do we make one?
+
+## Agenda Items
+- will plan a checklist to implement to approve pull requests 
+- team will review class note-11 for next meetingso we can disscuss it further
+- we need to figure out no module named bottle found error. It is only popping up on some computers including marker
+- Tomorrow we will have meeting with proffessor to clarify some points on grading
+- how to improve meetinga and SCRUM notes
+- **new procedure** only person who made the request can merge it, others review and approve but do not merge. 1 approval for meeting notes and documentation attempt for 2 for code additions. Using new github actions will help this.
+- isssue #92 Brady's adding new auto testing to our pull requests on github(will run all unnitests automatically and check for PEP8 compliance)
+- Discuss use of tags for issues
+- Discuss Vansh with proffessor tomorrow, did he drop the course?
+
+## SCRUM Notes
+- Kanban board
+    - Brady being assigned git hub actions task #92 on Kanban board
+    - new issue code review templates for pull/merge requests will assign to Brady
+    - new issue re-establish label system for issues on kanban board
+    - add communication issues to the backlog - assign no one
+
+---
+
+## Nov 2, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Nov 2, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- review feedback from sprint 1
+- plan any adjustments needed to obtain more marks
+
+## Agenda Items
+- discussed feedback from sprint 1, decieded we need to do proper code reviews for each Pull Request
+- familiarized with github workflows to help with code reviews by automating testing and linting
+
+## SCRUM Notes
+- get code to pass the pylint github action
+- added communitcation issue card
+- find out issues with feedback, discuss with professor
+
+## Nov 6, 2023 
+**Recorded by:** Cody Cribb
+**Notes submiited on:** Nov 6, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh, Jashim,Mayesha)
+
+## Agenda
+- Get POSTMAN tests running/figure out errors related to tests written in POSTMAN.
+- Figure out issue with adding handling for rating reviews in server app.
+
+## Agenda Items
+- Discuss content of the process and architecture documents.
+- We will make 2 new documents to document our process as well as for architecture diagrams. 
+- Once tests are passing, we will work on delete button and adding a comment section for reviews. 
+
+## SCRUM Notes
+- Add process document.
+- Get all tests passing.
+- Put our re-established label system inside the newly created process document. 
+- Put code review template inside process document. 

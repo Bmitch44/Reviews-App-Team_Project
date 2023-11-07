@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS review (
     topic_id INTEGER,
     review_text TEXT,
     status TEXT,
+    review_ratings TEXT,
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
     FOREIGN KEY (topic_id) REFERENCES topic (id) ON DELETE CASCADE
 );
@@ -33,7 +34,7 @@ CREATE TABLE IF NOT EXISTS review (
 
 SESSION_TABLE = """
 CREATE TABLE IF NOT EXISTS session (
-    session_id TEXT PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     user_id INTEGER,
     created_at TIMESTAMP NOT NULL,
     expires_at TIMESTAMP NOT NULL,
