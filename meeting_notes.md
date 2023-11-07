@@ -320,3 +320,27 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - get code to pass the pylint github action
 - added communitcation issue card
 - find out issues with feedback, discuss with professor
+
+## Nov 6, 2023 
+**Recorded by:** Cody Cribb
+**Notes submiited on:** Nov 6, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh, Jashim,Mayesha)
+
+## Agenda
+- Get POSTMAN tests running/figure out errors related to tests written in POSTMAN.
+- Figure out issue with adding handling for rating reviews in server app.
+
+## Agenda Items
+- Discuss content of the process and architecture documents.
+- We will make 2 new documents to document our process as well as for architecture diagrams. 
+- Once tests are passing, we will work on delete button and adding a comment section for reviews. 
+
+## SCRUM Notes
+- Add process document.
+- Get all tests passing.
+- Put our re-established label system inside the newly created process document. 
+- Put code review template inside process document. 
