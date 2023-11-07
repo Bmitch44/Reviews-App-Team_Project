@@ -11,7 +11,7 @@ class SessionManager:
         db_path (str): The path to the database where session data is stored.
         object_mapper (ObjectMapper): An instance of ObjectMapper to handle database operations.
     """
- 
+
     def __init__(self, db_path: str):
         """Initializes a new SessionManager instance.
 
@@ -20,13 +20,14 @@ class SessionManager:
         """
         self.db_path = db_path
         self.object_mapper = ObjectMapper(self.db_path)
-         
+
     def create_session(self, user_id: int, is_active: int = 1):
         """Creates a new session for a user.
 
         Args:
             user_id (int): The ID of the user for whom the session is created.
-            is_active (int, optional): A flag indicating whether the session is active (default is 1).
+            is_active (int, optional): A flag indicating whether the session is active 
+            (default is 1).
 
         Returns:
             Session: The created session object.
@@ -34,7 +35,7 @@ class SessionManager:
         session = Session(user_id=user_id, is_active=is_active)
         self.object_mapper.add(session)
         return session
-        
+
     def get_session(self, id: str):
         """
         Retrieves a session by its ID.
@@ -63,7 +64,7 @@ class SessionManager:
                 self.update_session(session)
                 return session
         return None
-        
+
     def update_session(self, session):
         """Updates a session.
 
