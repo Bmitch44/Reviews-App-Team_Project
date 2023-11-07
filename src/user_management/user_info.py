@@ -104,34 +104,29 @@ class UserInfo:
         salt = stored_password[:16]
         return stored_password == self._hash_password(provided_password, salt)
 
-    def search_review(self, user_id: str=None, topic_name: str = None) -> List:
+    def search_review(self, query):
         """
-        Search for reviews based on user ID or topic name.
+        Search for reviews based on query.
 
         Args:
-            user_id: The ID of the user whose reviews we want to find.
-            topic_name: The name of the topic of the reviews we want to find.
+            Query made for a topic or username
 
         Returns:
             A list of Review objects that match the search criteria.
         """
-        if user_id is None and topic_name is None:
-            raise ValueError("Please provide at least one search criterion: user_id or topic_name.")
+        if not query:
+            raise ValueError("Query cannot be empty.")
         
-        reviews = []
+        result = []
         all_reviews = self.object_mapper.get(Review)  # This retrieves all reviews. 
         all_topics = self.object_mapper.get(Topic)  # This retrieves all topics. 
-
-        # Create a mapping of topic names to topic IDs
-        topic_name_to_id = {topic.name: topic.id for topic in all_topics}
-
-        # Find the topic ID for the corresponding topic name provided
-        topic_id = topic_name_to_id.get(topic_name) if topic_name else None
+        all_users = self.object_mapper.get(User)  # This retrieves all users
 
         for review in all_reviews:
-            if user_id and review.user_id == user_id:
-                reviews.append(review)
-            if topic_id and review.topic_id == topic_id:
-                reviews.append(review)
-        
-        return reviews
+            for user in all_users:
+                if user.id == review.user_id and query in user.username:
+                    result.append(review)
+            for topic in all_topics:
+                if topic.id == review.topic_id and query in topic.name:
+                    result.append(review)
+        return result
