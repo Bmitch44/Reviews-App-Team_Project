@@ -54,6 +54,7 @@ class WebServer(Bottle):
         self.route('/topics/<topic_id>/create_review', method=['GET', 'POST'], callback=self.create_review)
         self.route('/reviews', method=['GET', 'POST'], callback=self.list_reviews)
         self.route('/reviews/<review_id>/edit', method=['GET', 'POST'], callback=self.edit_review)
+        self.route('/reviews/<review_id>/delete', method=['GET', 'POST'], callback=self.delete_review)
         self.route('/logout', method=['GET', 'POST'], callback=self.logout)
         self.route('/static/<filepath:path>', callback=self.server_static)
 
@@ -224,6 +225,27 @@ class WebServer(Bottle):
             
             return redirect('/reviews')
         return template('edit_review.tpl', review=review)
+    
+    def delete_review(self, review_id):
+        """
+        Delete an existing review.
+
+        Args:
+            review_id (int): The ID of the review to be edited.
+
+        Returns:
+            str: Response indicating the success or failure of the review deletion.
+        """
+        self.login_check()
+        if request.method == 'POST':
+            review = self.user_info.object_mapper.get(Review, id=review_id)
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            user_id = self.user_info.session_manager.get_session(session_id).user_id
+            if review.user_id == user_id:
+                self.user_info.object_mapper.remove(review)
+            return redirect('/reviews')
+        reviews = self.user_info.object_mapper.get(Review)
+        return template('list_reviews.tpl', reviews=reviews, filter_criteria="all", request=request, base="base_logged_in.tpl")
         
     def list_topics(self):
         """
