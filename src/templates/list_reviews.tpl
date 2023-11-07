@@ -25,6 +25,10 @@
         {{review.review_text}}
         % if review.status == 'draft':
             <a href="/reviews/{{review.id}}/edit">Edit</a>
+        % else:
+            <form action="/reviews/{{review.id}}/delete" method="post">
+                <button type="submit">Delete</button>
+            </form>
         % end
     </li>
 % end
