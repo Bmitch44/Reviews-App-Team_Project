@@ -2,17 +2,21 @@ import datetime
 import uuid
 import json
 
-class User:
+class Base:
+    def __init__(self, id: str=None):
+        self.id = id or uuid.uuid4().hex
+
+class User(Base):
     """
     A user in the system
     """
 
     def __init__(self, username: str, email:str, hashed_password: str, 
                  id: str=None):
+        super().__init__(id)
         self.username = username
         self.email = email
         self.hashed_password = hashed_password
-        self.id = id or uuid.uuid4().hex
     
     @property
     def data(self):
@@ -40,7 +44,7 @@ class User:
         return data
 
     
-class Review:
+class Review(Base):
     """
     A review in the system
     """
@@ -48,12 +52,12 @@ class Review:
     def __init__(self, review_text: str, user_id: str, topic_id: str, 
                  status: str = "draft", review_ratings: str = None, 
                  id: str = None):
+        super().__init__(id)
         self.review_text = review_text
         self.user_id = user_id
         self.topic_id = topic_id
         self.status = status
         self.review_ratings = review_ratings or '[]'
-        self.id = id or uuid.uuid4().hex
     
     @property
     def ratings(self):
@@ -87,17 +91,17 @@ class Review:
         return data
 
 
-class Topic:
+class Topic(Base):
     """
     a topic in the system 
     """
     
     def __init__(self, name: str, description: str, user_id: str, 
                  id: str = None):
+        super().__init__(id)
         self.name = name
         self.description = description
         self.user_id = user_id
-        self.id = id or uuid.uuid4().hex
 
     @property
     def data(self):
@@ -125,20 +129,20 @@ class Topic:
         return data
 
 
-class Session:
+class Session(Base):
     """
     A session with the server 
     """
 
     def __init__(self, user_id, created_at = None, expires_at = None, 
                  last_activity_at  = None, is_active = 0, id = None):
+        super().__init__(id)
         self.user_id = user_id
         self.created_at = created_at or datetime.datetime.now()
         self.expires_at = expires_at or (self.created_at 
                                          + datetime.timedelta(hours=1))
         self.last_activity_at = last_activity_at or datetime.datetime.now()
         self.is_active = is_active
-        self.id = id or uuid.uuid4().hex
 
     @property
     def data(self):
