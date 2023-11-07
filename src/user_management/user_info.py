@@ -1,6 +1,5 @@
 import hashlib
 import os
-from typing import List
 from src.app_logic.app_logic import User, Review, Topic
 from src.user_management.session_management import SessionManager
 from src.data_management.object_mapper import ObjectMapper
@@ -46,7 +45,7 @@ class UserInfo:
         Returns:
             SessionManager: The SessionManager object if login is successful, None otherwise.
         """
-        
+
         users = self.object_mapper.get(User)
         print(f"Users:{users}\nID: {users[0].id}")
         for user in users:
@@ -116,10 +115,10 @@ class UserInfo:
         """
         if not query:
             raise ValueError("Query cannot be empty.")
-        
+
         result = []
-        all_reviews = self.object_mapper.get(Review)  # This retrieves all reviews. 
-        all_topics = self.object_mapper.get(Topic)  # This retrieves all topics. 
+        all_reviews = self.object_mapper.get(Review)  # This retrieves all reviews.
+        all_topics = self.object_mapper.get(Topic)  # This retrieves all topics.
         all_users = self.object_mapper.get(User)  # This retrieves all users
 
         for review in all_reviews:
