@@ -1,5 +1,14 @@
 % rebase('base_logged_in.tpl', title='List Reviews')
 
+<!-- Search Bar -->
+<form action="/reviews/search" method="post">
+    <h4>Search for any review by topic or username</h4>
+    <div>
+        <input type="text" name="query" placeholder="Search for any reviews..." required>
+        <input type="submit" value="Search">
+    </div>
+</form>
+
 <h2>Your Reviews</h2>
 
 <!-- Filter Buttons -->
@@ -16,6 +25,10 @@
         {{review.review_text}}
         % if review.status == 'draft':
             <a href="/reviews/{{review.id}}/edit">Edit</a>
+        % else:
+            <form action="/reviews/{{review.id}}/delete" method="post">
+                <button type="submit">Delete</button>
+            </form>
         % end
     </li>
 % end

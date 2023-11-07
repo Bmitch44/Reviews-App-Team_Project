@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS review (
 
 SESSION_TABLE = """
 CREATE TABLE IF NOT EXISTS session (
-    session_id TEXT PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     user_id INTEGER,
     created_at TIMESTAMP NOT NULL,
     expires_at TIMESTAMP NOT NULL,

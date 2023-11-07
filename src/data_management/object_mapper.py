@@ -52,11 +52,7 @@ class ObjectMapper:
         if result:
             return result
         else:
-            if obj_type == "session":
-                obj_id = obj.session_id
-            else:
-                obj_id = obj.id
-            raise ValueError(f"error adding {obj_type} with id {obj_id}")
+            raise ValueError(f"error adding {obj_type} with id {obj.id}")
 
     def remove(self, obj) -> bool:
         """
