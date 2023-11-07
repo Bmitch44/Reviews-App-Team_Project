@@ -135,8 +135,6 @@ class DataStore:
         Returns:
             str: The generated WHERE clause.
         """
-        if table_name == "session":
-            return f" WHERE session_id = '{id}'"
         return f" WHERE id = '{id}'"
 
     def delete(self, id, table_name):

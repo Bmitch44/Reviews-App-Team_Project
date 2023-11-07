@@ -155,10 +155,17 @@ class WebServer(Bottle):
         Returns:
             str: Response indicating the success or failure of the review creation.
         """
-
         self.login_check()
         if request.method == 'POST':
             review_content = request.forms.get('review_text')
+            review_ratings = [
+                int(request.forms.get('effort')), 
+                int(request.forms.get('communication')),
+                int(request.forms.get('participation')),
+                int(request.forms.get('attendance'))
+                ]
+            review_ratings = json.dumps(review_ratings) # converts "[0, 0, 0, 0]" to [0, 0, 0, 0]
+
              # Check which button was clicked
             if request.forms.get('save'):
                 action = 'Save Draft'
@@ -171,7 +178,8 @@ class WebServer(Bottle):
             user_id = UserInfo(self.database_path).session_manager.get_session(session_id).user_id
 
             status = "draft" if action == "Save Draft" else "published"
-            review = Review(review_content, user_id, topic_id, status)
+
+            review = Review(review_content, user_id, topic_id, status, review_ratings=review_ratings)
 
             UserInfo(self.database_path).object_mapper.add(review)
             return redirect('/topics')
@@ -197,6 +205,13 @@ class WebServer(Bottle):
 
         if request.method == 'POST':
             updated_review_text = request.forms.get('review_text')
+            review_ratings = [
+                int(request.forms.get('effort')), 
+                int(request.forms.get('communication')),
+                int(request.forms.get('participation')),
+                int(request.forms.get('attendance'))
+                ]
+            review_ratings = json.dumps(review_ratings) # converts "[0, 0, 0, 0]" to [0, 0, 0, 0]
             review.review_text = updated_review_text
             
             # Check which button was clicked
