@@ -238,14 +238,16 @@ class WebServer(Bottle):
             str: Response indicating the success or failure of the review deletion.
         """
         self.login_check()
+        user_info = UserInfo(self.database_path)
+
         if request.method == 'POST':
-            review = self.user_info.object_mapper.get(Review, id=review_id)
+            review = user_info.object_mapper.get(Review, id=review_id)
             session_id = request.get_cookie("session_id", secret=self.secret)
-            user_id = self.user_info.session_manager.get_session(session_id).user_id
+            user_id = user_info.session_manager.get_session(session_id).user_id
             if review.user_id == user_id:
-                self.user_info.object_mapper.remove(review)
+                user_info.object_mapper.remove(review)
             return redirect('/reviews')
-        reviews = self.user_info.object_mapper.get(Review)
+        reviews = user_info.object_mapper.get(Review)
         return template('list_reviews.tpl', reviews=reviews, filter_criteria="all", request=request, base="base_logged_in.tpl")
     
     def search_review(self):
@@ -259,7 +261,7 @@ class WebServer(Bottle):
         if request.method == 'POST':
             query = request.forms.get('query')
             filter_criteria = request.forms.get('filter') or 'all'
-            reviews = UserInfo(self.database_path).search_reviews(query)
+            reviews = UserInfo(self.database_path).search_review(query)
             reviews = [review for review in reviews if review.status != "draft"]
             return template('list_reviews.tpl', title="Reviews", reviews=reviews, filter_criteria=filter_criteria, base="base_logged_in.tpl")
         
