@@ -54,6 +54,8 @@ class WebServer(Bottle):
         self.route('/topics/<topic_id>/create_review', method=['GET', 'POST'], callback=self.create_review)
         self.route('/reviews', method=['GET', 'POST'], callback=self.list_reviews)
         self.route('/reviews/<review_id>/edit', method=['GET', 'POST'], callback=self.edit_review)
+        self.route('/reviews/<review_id>/delete', method=['GET', 'POST'], callback=self.delete_review)
+        self.route('/reviews/search', method=['GET', 'POST'], callback=self.search_review)
         self.route('/logout', method=['GET', 'POST'], callback=self.logout)
         self.route('/static/<filepath:path>', callback=self.server_static)
 
@@ -224,6 +226,44 @@ class WebServer(Bottle):
             
             return redirect('/reviews')
         return template('edit_review.tpl', review=review)
+    
+    def delete_review(self, review_id):
+        """
+        Delete an existing review.
+
+        Args:
+            review_id (int): The ID of the review to be edited.
+
+        Returns:
+            str: Response indicating the success or failure of the review deletion.
+        """
+        self.login_check()
+        user_info = UserInfo(self.database_path)
+
+        if request.method == 'POST':
+            review = user_info.object_mapper.get(Review, id=review_id)
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            user_id = user_info.session_manager.get_session(session_id).user_id
+            if review.user_id == user_id:
+                user_info.object_mapper.remove(review)
+            return redirect('/reviews')
+        reviews = user_info.object_mapper.get(Review)
+        return template('list_reviews.tpl', reviews=reviews, filter_criteria="all", request=request, base="base_logged_in.tpl")
+    
+    def search_review(self):
+        """
+        Searches for a review based on the provided query.
+
+        Returns:
+            str: HTML response displaying a list of topics based that conform with the user's search query.
+        
+        """
+        if request.method == 'POST':
+            query = request.forms.get('query')
+            filter_criteria = request.forms.get('filter') or 'all'
+            reviews = UserInfo(self.database_path).search_review(query)
+            reviews = [review for review in reviews if review.status != "draft"]
+            return template('list_reviews.tpl', title="Reviews", reviews=reviews, filter_criteria=filter_criteria, base="base_logged_in.tpl")
         
     def list_topics(self):
         """
