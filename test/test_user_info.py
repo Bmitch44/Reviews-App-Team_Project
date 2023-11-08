@@ -63,7 +63,7 @@ class TestUserInfo(unittest.TestCase):
         password = "test_password"
         self.user_info.register(username, email, password)
         user_id = self.user_info.login(username, password)
-        self.user_info.logout(id)
+        self.user_info.logout(user_id)
         retrieved_session = self.session_manager.get_session(user_id)
         self.assertFalse(retrieved_session.is_active)
 

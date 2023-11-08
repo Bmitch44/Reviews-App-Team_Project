@@ -50,7 +50,7 @@ class TestSessionManager(unittest.TestCase):
         retrieved_session = self.session_manager.get_session(created_session.user_id)
         self.assertIsNotNone(retrieved_session)
 
-    def mock_db_get_method(self, obj_class, id=None):
+    def mock_db_get_method(self, _obj_class, _obj_id=None):
         """
         Mock method for database 'get' operation to simulate retrieving a session.
         
