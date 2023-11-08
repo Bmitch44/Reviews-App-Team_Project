@@ -324,7 +324,7 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## Nov 6, 2023 
 **Recorded by:** Cody Cribb
 **Notes submiited on:** Nov 6, 2023
-**SCRUM Master:** Cody Cribb
+**SCRUM Master:** Martha Snelgrove
 **Venue:** In Class (EN 2040) 
 **Source:** None 
 **Time:**  1-2
@@ -344,3 +344,28 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Get all tests passing.
 - Put our re-established label system inside the newly created process document. 
 - Put code review template inside process document. 
+
+---
+
+## Nov 7, 2023 
+**Recorded by:** Mayesha Jashim
+**Notes submiited on:** Nov 7, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:** In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda 
+- Review open pull request and discussed possible issues (changes required, and tests need to be implemented or passed.)
+
+## Agenda Items
+- Fixed the errors in Pylint
+- Cody merged his pull request
+- Martha updated app_logic and merged her pull_request
+- Mayesha made a pull request
+- Brady reviewed a couple pull requests
+
+## Scrum notes
+- created cards for getting delete review button completed
+- created cards for comment section functioning
