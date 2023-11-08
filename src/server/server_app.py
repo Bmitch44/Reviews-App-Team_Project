@@ -255,7 +255,7 @@ class WebServer(Bottle):
         Searches for a review based on the provided query.
 
         Returns:
-            str: HTML response displaying a list of topics that abide by the filter criteria.
+            str: HTML response displaying a list of topics based that conform with the user's search query.
         
         """
         if request.method == 'POST':
