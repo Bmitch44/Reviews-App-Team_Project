@@ -25,16 +25,16 @@ To be added
 ## Database ERD Diagram
 To be added
 
+## Process Model Analysis Document
+To be added
+
 ## Individual Contributions
 
 ### Performance Reviews
-Performance reviews will be found under the perf_reviews folder. Each member will add a file with their performance reviews of the rest of the group.
+Performance reviews will be found under the `perf_reviews` folder. Each member will add a file with their performance reviews of the rest of the group. Each folder represents a sprint inside perf_reviews, so to see the performance reviews for sprint 2, view the sprint-2 folder.
 
 ### Code Reviews
-Code reviews will be found under each individual pull request which will have a discussion section where reviews will be shown and any issues that arise
-
-### User Stories
-User stories will be found under the user_stories folder. Each member will have add a file for their user story
+Code reviews will be found under each individual pull request which will have a discussion section where reviews will be shown and any issues that arise. Along with the pull request code reviews, we also have end-of-sprint code reviews located under the `code_reviews` folder, where each team member will have a review of everyone elses code.
 
 ### Brady:
 #### Implementations:
