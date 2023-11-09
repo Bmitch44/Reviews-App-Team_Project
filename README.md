@@ -23,7 +23,7 @@ $ python3 -m unittest test/<test_file_name.py>
 To be added
 
 ## Database ERD Diagram
-To be added
+![ERD Diagram](static/images/ERD-Diagram.png)
 
 ## Process Model Analysis Document
 To be added
