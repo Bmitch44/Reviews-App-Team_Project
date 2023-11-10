@@ -369,3 +369,42 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## Scrum notes
 - created cards for getting delete review button completed
 - created cards for comment section functioning
+
+---
+
+## Nov 9, 2023 
+**Recorded by:** Martha Snelgrove
+**Notes submiited on:** Nov 9, 2023
+**SCRUM Master:** Mayesha Jashim
+**Venue:** In Class (EN 2040) 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda 
+- inquiries about last sprints marks
+- code reviews
+- performance reviews
+- pull request deadline
+- outlying issues for this sprint
+
+## Agenda Items
+- email prof individually if its aboutthe individual grades
+- team grades will be pushed to sprint 3so we will leave it
+- bug we need to check if current database is being used is valid with the  current implementation
+- performance reviews due friday, in performance reviews, old reviews will be moved into a folder called sprint_one in the perf_reviews folder.
+- code reviews, post you review in the folder called code reviews. Focues on SOLID, DRY and de-coupling when writing your reviews
+- server is functional at the moment but missing tests. To allow members to complete individual requirements we will be pushing the pull request dealine to **5pm Friday Nov 10th**
+- re-establishing labeling system never got completed will be moved to the next print *(issue 105, 124)*
+- Attemts to reach Vansh Chaudhary continued to fail, he has not attended any meetings this sprint or complete and issues. Attempts were made to reach out through our discord server and our groupchat but nothing came of it. We are unclear if he has since dropped the course and has not informed us. *(issue 102)*
+- additional features planned for this sprint were a delete button *(issues 93)* which was completed and a comment section *(issues 94)* which was not, the comment section will shift to next sprint.
+
+## Scrum notes
+- create card about grades
+- create card to fix above issues with database recognotion
+- create cards for performance reviews
+- create cards for code reviews
+- labeling system will be moved to next sprint ***issue 105 & 124***
+- communications remains incomplete ***issues 102*** make notes on follow up on card
+- css styling will be assigned to Martha Snelgrove ***issue 88***
+- comment section will be moved to next sprint ***issue 94***
