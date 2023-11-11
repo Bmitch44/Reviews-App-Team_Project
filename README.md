@@ -30,6 +30,9 @@ To be added
 ## Process Model Analysis Document
 Our process model analysis is located under `process_analysis/` [click here](process_analysis/process_analysis_sprint2.md)
 
+## Database UML Diagram
+![UML Diagram](static/images/uml-comp2005.drawio.png)
+
 ## Individual Contributions
 
 ### Performance Reviews
