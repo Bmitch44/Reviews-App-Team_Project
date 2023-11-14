@@ -398,6 +398,7 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - re-establishing labeling system never got completed will be moved to the next print *(issue 105, 124)*
 - Attemts to reach Vansh Chaudhary continued to fail, he has not attended any meetings this sprint or complete and issues. Attempts were made to reach out through our discord server and our groupchat but nothing came of it. We are unclear if he has since dropped the course and has not informed us. *(issue 102)*
 - additional features planned for this sprint were a delete button *(issues 93)* which was completed and a comment section *(issues 94)* which was not, the comment section will shift to next sprint.
+- due to trouble shooting of a server issue found both on team members computer and markers computer last sprint css styling was slowed, will be moved to next sprint
 
 ## Scrum notes
 - create card about grades
