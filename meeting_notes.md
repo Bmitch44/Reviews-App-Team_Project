@@ -412,9 +412,9 @@ We will use the code from challenge 9 to create a working web-server to initiali
 
 ---
 
-## Nov 9, 2023 
+## Nov 14, 2023 
 **Recorded by:** Brady Mitchelmore
-**Notes submiited on:** Nov 9, 2023
+**Notes submiited on:** Nov 14, 2023
 **SCRUM Master:** Cody Cribb
 **Venue:** Discord 
 **Source:** None 
