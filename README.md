@@ -46,6 +46,7 @@ Code reviews will be found under each individual pull request which will have a 
 - `src/data_management/db_schema.py`
 - `src/data_management/data_store.py`
 - `src/data_management/object_mapper.py`
+- `src/templates/`
 
 #### Tests:
 - `test/test_data_store.py`
@@ -70,14 +71,13 @@ Code reviews will be found under each individual pull request which will have a 
 ### Cody:
 #### Implementations:
 - `src/server/server_app.py`
-- `src/templates/`
 
 #### Tests:
 - None
 
 ### Vansh:
 #### Implementations:
-- assigned `src/templates/` but no contribution, task given to Cody instead
+- assigned `src/templates/` but no contribution, task given to Brady instead
 
 #### Tests:
 - None

@@ -407,5 +407,35 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - create cards for code reviews
 - labeling system will be moved to next sprint ***issue 105 & 124***
 - communications remains incomplete ***issues 102*** make notes on follow up on card
-- css styling will be assigned to Martha Snelgrove and will be moved to next sprint ***issue 88***
-- comment section will be moved to next sprint ***issue 94***
+- css styling will be assigned to Martha Snelgrove ***issue 88***
+- comment section will be moved to next sprint **issue 94**
+
+---
+
+## Nov 14, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Nov 14, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** Discord 
+**Source:** None 
+**Time:**  3:30-4:15
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- discuss new features to be implemented this sprint
+- we will conduct regular code reviews for the entire sprint
+- look at the postman errors and figure out if it is a server side problem, or backend problem
+
+## Agenda Items
+- we will have one code review due a week before the pull request deadline and the second due on the actual deadline.
+- code reviews will also be conducted in pull requests
+- discussed which features we are adding, adding to kanboard
+- improve invalid user login flow, add 'incorrect password/user' message
+- users can register more than once, this needs to be fixed
+- **pull request deadline - December 1st** this is for code changes only
+
+## SCRUM Notes
+- backlog item: finish the comment section
+- backlog item: style the html with css
+- add following to topics, including follow button, this will allow users to track certian topics in the dashboard
+- finish the dashboard page which will only display followed topics and their corresponding reviews
