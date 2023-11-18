@@ -439,3 +439,57 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - backlog item: style the html with css
 - add following to topics, including follow button, this will allow users to track certian topics in the dashboard
 - finish the dashboard page which will only display followed topics and their corresponding reviews
+
+---
+
+## Nov 16, 2023 
+**Recorded by:** Cody Cribb
+**Notes submiited on:** Nov 16, 2023
+**SCRUM Master:** Martha Snelgrove
+**Venue:** Discord 
+**Source:** None 
+**Time:**  1-1:30 
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Finalize tasks for sprint 3.
+- Assign tasks that are not yet assigned in the KanBan.
+- Discuss how comment section will be added, assign tasks for it.
+- Discuss how ‘follow’ feature will be added, assign tasks for it.
+- Discuss process to debug registration duplicates.
+- Discuss database validation and assign tasks.
+
+## Agenda Items
+- Comment section will need the following:
+    - Template change for reviews, add comment section
+        - Server method and route to retrieve comment section form
+        - App logic Reviews will need comments attribute, should also be string
+        - Database will need new comment column for review table
+- Follow topic feature will need the following:
+    - Template change for topics, add follow/unfollow button
+        - Server method and route to register a follow
+        - App logic User will need following list, Topic will need followers list
+        - Database will need new following column for user, followers column for topic
+- Dashboard page to display following topics will need the following:
+    - Template change to display the reviews
+        - Possibly server method update for the dashboard route
+- Debugging registration duplicates will need the following:
+    - Validating at one of the layers
+- Validating the database schema with the current persitent database:
+    - Need to check the current db structure to verify with the schema
+
+## SCRUM Notes
+
+- Create a comment template, comment button on reviews.
+- Create a server method to retrieve form data, as well as the route for new template.
+- New attribute needed for the Review class, in order to handle comment data. Name of attribute would be "comments." 
+- Comment section will need a template, as well as a server_app method.
+- Follow button needed for each topic, would change from follow to unfollow when follow is clicked.
+- Would need a server method to register which user is following who. Could be an edit to an already existing method.
+- Create a list to handle the topics that a user is currently following. Topic will also need the users that are currently following it. Anyone will be able to follow any topic. 
+- User class needs new list to hold all topics the user is following.
+- Topic class needs new list to hold all users following each topic. 
+- Need to create a new dashboard template to be able to handle the topics that a user is following. 
+- Update the current dashboard method to be able to pass the topic list to the template so that they can be used inside the template. 
+- Register method needs to be updated to check if the user is attempting to register with a username and email that is already in the database.  
+- Create verify database method for object mapper.
