@@ -27,7 +27,17 @@ class UserInfo:
 
         Returns:
             User: The User object representing the registered user.
+        
+        Raises:
+        ValueError: If the username or email already exists.
         """
+        existing_users = self.object_mapper.get(User)
+        for user in existing_users:
+            if user.username == username:
+                raise ValueError("Username is already taken.")
+            if user.email == email:
+                raise ValueError("A user already exists with this email.")
+        #register the user
         hashed_password = self._hash_password(password)
         user = User(username, email, hashed_password)
         result = self.object_mapper.add(user)
@@ -44,22 +54,24 @@ class UserInfo:
 
         Returns:
             SessionManager: The SessionManager object if login is successful, None otherwise.
+        
+        Raises:
+        ValueError: If the user does not exist or the password is incorrect.
         """
-
         users = self.object_mapper.get(User)
-        print(f"Users:{users}\nID: {users[0].id}")
+        user_found = None
         for user in users:
-            if user.username == username and self._verify_password(user.hashed_password, password):
-                user_session = self.session_manager.get_user_session(user.id)
-                print(f"User session: {user_session}")
-                if user_session:
-                    user_session.is_active = 1
-                    return user_session.id
-                else:
-                    new_session = self.session_manager.create_session(user.id)
-                    new_session.is_active =1
-                    return new_session.id
-        return None
+            if user.username == username:
+                user_found = user
+                break
+
+        if not user_found:
+            raise ValueError("User does not exist.")
+
+        if self._verify_password(user_found.hashed_password, password):
+            return self.session_manager.get_user_session(user_found.id)
+        else:
+            raise ValueError("Incorrect password.")
 
     def logout(self, id):
         """
