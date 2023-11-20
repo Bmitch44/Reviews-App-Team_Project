@@ -53,7 +53,7 @@ class UserInfo:
             password (str): The password of the user trying to log in.
 
         Returns:
-            SessionManager: The SessionManager object if login is successful, None otherwise.
+            SessionManager: The SessionManager id if login is successful
         
         Raises:
         ValueError: If the user does not exist or the password is incorrect.
@@ -69,7 +69,7 @@ class UserInfo:
             raise ValueError("User does not exist.")
 
         if self._verify_password(user_found.hashed_password, password):
-            return self.session_manager.get_user_session(user_found.id)
+            return self.session_manager.get_user_session(user_found.id).id
         else:
             raise ValueError("Incorrect password.")
 
