@@ -65,7 +65,7 @@ class TestUserInfo(unittest.TestCase):
         user_id = self.user_info.login(username, password)
         self.user_info.logout(user_id)
         retrieved_session = self.session_manager.get_session(user_id)
-        self.assertFalse(any(session.is_active for session in retrieved_session))
+        self.assertFalse(retrieved_session.is_active)
 
     def test_search_review(self):
         """
