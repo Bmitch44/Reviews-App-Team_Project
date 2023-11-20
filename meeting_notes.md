@@ -493,3 +493,32 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Update the current dashboard method to be able to pass the topic list to the template so that they can be used inside the template. 
 - Register method needs to be updated to check if the user is attempting to register with a username and email that is already in the database.  
 - Create verify database method for object mapper.
+
+## Nov 20, 2023 
+**Recorded by:** Mayesha Jashim
+**Notes submiited on:** Nov 20, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:** Class (EN2040) and Discord 
+**Source:** None 
+**Time:**  1 - 1:30
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+-  discussion of changes to process and architecture documents for sprint 3
+-  discussion of alternative architecture document.
+
+## Agenda Items
+- **new pull request deadline - December 6th** (Due to extension for the deadline)
+    - implement all the features we decided on
+    - enhance our codes till we are satisfactory
+- We decided to work on the alternatives architecture after pull request deadline
+- Each member must complete atleast one new task before Tuesday
+- Meeting on 28th Nov, Tuesday will be used for code reviews. 
+    - Each members presents their code. 
+    - Team members makes notes on code functionality
+    - Suggestions and advices to make it better
+
+## Scrum Notes
+- CSS is assigned to Martha and Mayesha
+- Code review meeting on Nov 28
+- Implement Alternative Architecture (Microservices Architecture)
