@@ -67,7 +67,6 @@ class TestUserInfo(unittest.TestCase):
         retrieved_session = self.session_manager.get_session(user_id)
         self.assertFalse(retrieved_session.is_active)
 
-    #def test_search_review(self):
     def test_search_review(self):
         """
         Test the search_review function to ensure it returns reviews matching a username query.
