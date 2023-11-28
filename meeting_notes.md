@@ -494,6 +494,8 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - Register method needs to be updated to check if the user is attempting to register with a username and email that is already in the database.  
 - Create verify database method for object mapper.
 
+---
+
 ## Nov 20, 2023 
 **Recorded by:** Mayesha Jashim
 **Notes submiited on:** Nov 20, 2023
@@ -522,3 +524,30 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - CSS is assigned to Martha and Mayesha
 - Code review meeting on Nov 28
 - Implement Alternative Architecture (Microservices Architecture)
+
+---
+
+## Nov 23, 2023 
+**Recorded by:** Martha Snelgrove
+**Notes submiited on:** Nov 23, 2023
+**SCRUM Master:** Mayesha Jashim
+**Venue:** Discord 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Discussing microserver architecture
+- testing and code review to be added to process doc
+- labelling system
+
+## Agenda Items
+- no one has reviewed notes yet for microservices architecture so we will table this discussion until next meeting before which everyone will review the notes for dicussion
+- for next meeting each team member will read through and review code and return with a list of changes(aim for minimum 3) to discuss with group. Think in terms of tests but also general code review. **code review next week**
+- the feature is put on the kanban board under label feature new label is created with feature name, all tasks to complete the feature will be assigned the label of the feature
+- team continue completing assigned code tasks.
+
+## SCRUM Notes
+- read chapters 6 and 9's slides assigned to everyone
+- code review for next meeting assigned to everyone
+- no tasks to close
