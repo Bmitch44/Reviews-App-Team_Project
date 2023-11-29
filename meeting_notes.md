@@ -551,3 +551,29 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - read chapters 6 and 9's slides assigned to everyone
 - code review for next meeting assigned to everyone
 - no tasks to close
+
+---
+
+## Nov 28, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Nov 28, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** Discord 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- discuss how we will divide the workload for create microservices diagram
+- task someone to make sure external package installs are correctly represented in the repository. (DONE but can change to pyproject.toml similar to git workflows)
+- Discuss how we will break up project modules/code to adhere to microservices (MVC) architecture
+
+## Agenda Items
+- recapped what we learned from reading chapter 6 in the textbook
+- created a google drawings doc to collaborate on microservices diagram and started with a basic MVC diagram to start, we will build this out over time
+- discussed our label system which needs improvement, next meeting will be dedicated to this
+- code reviews pushed to Thursday meeting
+
+## SCRUM Notes
+- add a requirements.txt file has been completed, added to kanban for documenting it
+- add a card for the microservices architecture diagram
