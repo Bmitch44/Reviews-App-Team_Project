@@ -604,3 +604,29 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## SCRUM Notes
 - Create a card on the KanBan board for everyone to fix all the labels for each issue assigned to them (Sprint 3 only)
 - Update label system itself to use the new, updated labels.
+
+---
+
+## Nov 29, 2023 
+**Recorded by:** Mayesha Jashim
+**Notes submiited on:** Nov 29, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:** Discord and Class (EN2040)
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Conduct code reviews for every team members
+
+## Agenda Items
+- Each member gave a presentation of their modules and its functionality
+- Also discussed how the tests work 
+- Notes taken on the modules and recorded in 'code_reviews/Code-reviews-sprint3'
+
+## Scrum Notes
+- Update the Kanban Board regarding code reviews completion
+
+
+
+
