@@ -17,7 +17,7 @@ class TestUserMapper(TestCase):
 
     def test_add_success(self):
         """tests that data can be added to the database"""
-        user = User("test", "testemail", "testpassword")
+        user = User("test", "testemail", "testpassword", "[]")
         self.assertTrue(self.object_mapper.add(user))
 
     def test_add_failure(self):
@@ -27,29 +27,36 @@ class TestUserMapper(TestCase):
 
     def test_get_success(self):
         """tests that data can be retrieved from the database"""
-        user = User("test", "testemail", "testpassword")
+        user = User("test", "testemail", "testpassword", "[]")
         user_id = user.id
         self.object_mapper.add(user)
         self.assertEqual(self.object_mapper.get(User, id=user_id).data, user.data)
 
     def test_get_failure(self):
         """tests that data cannot be retrieved from the database if the user's not in database"""
-        user = User("testuser", "testpassword", "testemail")
+        user = User("testuser", "testpassword", "testemail", "[]")
         self.object_mapper.add(user)
         self.assertEqual(self.object_mapper.get(User, id=2), [])
 
     def test_remove_success(self):
         """tests that data can be removed from the database"""
-        user = User("testuser", "testpassword", "testemail")
+        user = User("testuser", "testpassword", "testemail", "[]")
         self.object_mapper.add(user)
         self.assertTrue(self.object_mapper.remove(user))
 
     def test_remove_failure(self):
         """tests that data cannot be removed from the database if the user is not in the database"""
-        user = User("testuser", "testpassword", "testemail")
+        user = User("testuser", "testpassword", "testemail", "[]")
         self.object_mapper.add(user)
         self.object_mapper.remove(user)
         self.assertRaises(ValueError, self.object_mapper.remove, user)
+
+    def test_update_success(self):
+        user = User("testuser", "testpassword", "testemail", "[]")
+        self.object_mapper.add(user)
+        user.followed_topics = "['test_topic']"
+        self.assertTrue(self.object_mapper.update(user))
+
 
     @classmethod
     def tearDownClass(cls):

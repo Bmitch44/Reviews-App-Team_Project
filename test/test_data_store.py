@@ -21,6 +21,7 @@ class TestDataStore(TestCase):
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
+            "topics_followed": "[]",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
 
@@ -31,6 +32,7 @@ class TestDataStore(TestCase):
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
+            "topics_followed": "[]",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
         # as long as required columns are present, save should succeed, disregarding extra columns
@@ -40,6 +42,7 @@ class TestDataStore(TestCase):
             "id": "1",
             "username": "test_user_1",
             "hashed_password": "test_password_1",
+            "topics_followed": "[]",
         }
         self.assertFalse(self.data_store.save(bad_user_data, "user"))
 
@@ -50,6 +53,7 @@ class TestDataStore(TestCase):
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
+            "topics_followed": "[]",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
         loaded_users = self.data_store.load("user")
@@ -62,6 +66,7 @@ class TestDataStore(TestCase):
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
+            "topics_followed": "[]",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
         loaded_users = self.data_store.load("invalid_table")
@@ -74,6 +79,7 @@ class TestDataStore(TestCase):
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
+            "topics_followed": "[]",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
         self.data_store.clear_tables()
@@ -87,6 +93,7 @@ class TestDataStore(TestCase):
             "username": "test_user_1",
             "hashed_password": "test_password_1",
             "email": "test_email_1@example.com",
+            "topics_followed": "[]",
         }
         self.assertTrue(self.data_store.save(user_data, "user"))
         self.assertTrue(self.data_store.delete(1, "user"))
@@ -94,6 +101,19 @@ class TestDataStore(TestCase):
     def test_delete_failure(self):
         """tests that data cannot be deleted from an invalid table"""
         self.assertFalse(self.data_store.delete(1, "user"))
+
+    def test_update_success(self):
+        """tests that data can be updated in the database"""
+        user_data = {
+            "id": "1",
+            "username": "test_user_1",
+            "hashed_password": "test_password_1",
+            "email": "test_email_1@example.com",
+            "topics_followed": "[]",
+        }
+        self.assertTrue(self.data_store.save(user_data, "user"))
+        user_data["topics_followed"] = "['test_topic_1']"
+        self.assertTrue(self.data_store.update(user_data, "user", "1"))
 
     @classmethod
     def tearDownClass(cls):
