@@ -52,6 +52,7 @@ class TestUserMapper(TestCase):
         self.assertRaises(ValueError, self.object_mapper.remove, user)
 
     def test_update_success(self):
+        """tests that data can be updated in the database"""
         user = User("testuser", "testpassword", "testemail", "[]")
         self.object_mapper.add(user)
         user.followed_topics = "['test_topic']"
