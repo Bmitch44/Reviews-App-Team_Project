@@ -93,3 +93,32 @@ class ObjectMapper:
         except Exception as e:
             print(f"Error retrieving {obj_type}: {str(e)}")
             raise e
+        
+    def update(self, obj) -> bool:
+        """
+        Updates an object in the database.
+
+        Args:
+            obj: The object to update.
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        obj_type = self._get_obj_type(obj)
+        if obj_type not in self.data_store.TABLES.keys():
+            raise ValueError(f"Invalid object type: {obj_type}")
+
+        if not hasattr(obj, 'id'):
+            raise ValueError(f"The object must have an 'id' attribute")
+
+        obj_data = obj.data
+        obj_id = obj_data.pop('id', None)  # Remove the id from the data to be updated
+
+        if obj_id is None:
+            raise ValueError(f"The object's 'id' attribute cannot be None")
+
+        result = self.data_store.update(obj_data, obj_type, obj_id)
+        if result:
+            return result
+        else:
+            raise ValueError(f"Error updating {obj_type} with id {obj_id}")
