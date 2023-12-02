@@ -36,6 +36,16 @@
         <!-- Attendance Rating -->
         <p>Attending team meetings: {{review.ratings[3]}}/10</p>
 
+        <!-- Comments -->
+        <ul>
+            % for comment in review.comments:
+                <li>
+                {{comment.get("user_id", "")}}
+                {{comment.get("comment", "")}}
+                </li>
+            % end
+        </ul>
+
         % if review.status == 'draft':
             <a href="/reviews/{{review.id}}/edit">Edit</a>
         % else:

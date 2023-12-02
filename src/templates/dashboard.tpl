@@ -1,6 +1,6 @@
-% rebase('base_logged_in.tpl', title='List Topics')
+% rebase('base_logged_in.tpl', title='Dashboard')
 
-<h2>All Topics</h2>
+<h2>Following</h2>
 <ul>
 % for topic in topics:
     <li>
