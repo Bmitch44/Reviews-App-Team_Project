@@ -577,3 +577,56 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## SCRUM Notes
 - add a requirements.txt file has been completed, added to kanban for documenting it
 - add a card for the microservices architecture diagram
+
+---
+
+## Nov 29, 2023 
+**Recorded by:** Cody Cribb
+**Notes submiited on:** Nov 29, 2023
+**SCRUM Master:** Martha Snelgrove
+**Venue:** Discord 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Discuss how we can improve upon our current label system.
+- Discuss how we will break up label system to be more specific.
+
+## Agenda Items
+- Removed WIP, Question, Review Needed; they were unused and not seen as needed.
+- Added more specific labels for features; new labels to cover all features that are planned to be added in Sprint 3.
+- Split documentation label into 2 parts, code documentation and regular documentation (documentation label was seen as too general).
+- Added new label to replace Review Needed, in the form of Code Review, since there was no Code Review label beforehand.
+- Improved upon general descriptions of all labels for increased clarity.
+- Task label was deemed to be too over applied, plan to reduce application to only specific tasks that have been assigned to a member. 
+
+## SCRUM Notes
+- Create a card on the KanBan board for everyone to fix all the labels for each issue assigned to them (Sprint 3 only)
+- Update label system itself to use the new, updated labels.
+
+---
+
+## Nov 29, 2023 
+**Recorded by:** Mayesha Jashim
+**Notes submiited on:** Nov 29, 2023
+**SCRUM Master:** Brady Mitchelmore
+**Venue:** Discord and Class (EN2040)
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda
+- Conduct code reviews for every team members
+
+## Agenda Items
+- Each member gave a presentation of their modules and its functionality
+- Also discussed how the tests work 
+- Notes taken on the modules and recorded in 'code_reviews/Code-reviews-sprint3'
+
+## Scrum Notes
+- Update the Kanban Board regarding code reviews completion
+
+
+
+
