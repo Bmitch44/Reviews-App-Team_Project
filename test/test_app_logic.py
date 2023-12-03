@@ -10,30 +10,21 @@ class TestAppLogic(TestCase):
     @classmethod
     def setUpClass(cls):
         # Create a new instance of each class for the tests
-        cls.user = User('Martha','email@gmail.com','password','a')
-        cls.topic = Topic('Stocks','They are going up','a','b')
-        cls.review = Review('this is a test','a','b',"draft",'[1,2,3,4]','c',)
+        cls.user = User('Martha','email@gmail.com','password',"['a','b','c']",'a')
+        cls.review = Review('this is a test','a','b',"draft",'[1,2,3,4]',"['a','b','c']",'c')
+        cls.topic = Topic('Stocks','They are going up','a',"['a','b','c']",'b')
         cls.session = Session('a','b','c','d','e','f')
 
     def test_user_success(self):
         """tests the user class is initialized correctly"""
         user_data = {
-            "id": 'a',
-            "username": 'Martha',
-            "hashed_password": 'password',
-            "email": 'email@gmail.com',
+            "id" : 'a',
+            "username" : 'Martha',
+            "hashed_password" : 'password',
+            "email" : 'email@gmail.com',
+            "topics_followed" : "['a','b','c']"
         }
         self.assertEqual(self.user.data, user_data)
-
-    def test_topic_success(self):
-        """tests the topic class is initialized correctly"""
-        topic_data = {
-            "id" : 'b',
-            "name" : 'Stocks',
-            "description" : 'They are going up',
-            "user_id" : 'a'
-        }
-        self.assertEqual(self.topic.data, topic_data)
 
     def test_review_success(self):
         """tests the Review class is initialized correctly"""
@@ -43,9 +34,21 @@ class TestAppLogic(TestCase):
             "user_id" : 'a',
             "topic_id" : 'b',
             "status" : "draft",
-            "review_ratings" : '[1,2,3,4]'
+            "review_ratings" : '[1,2,3,4]',
+            "review_comments" : "['a','b','c']"
         }
         self.assertEqual(self.review.data, review_data)
+
+    def test_topic_success(self):
+        """tests the topic class is initialized correctly"""
+        topic_data = {
+            "id" : 'b',
+            "name" : 'Stocks',
+            "description" : 'They are going up',
+            "user_id" : 'a',
+            "topic_followers" : "['a','b','c']"
+        }
+        self.assertEqual(self.topic.data, topic_data)
 
     def test_session_success(self):
         """tests the Session class is initialized correctly"""
