@@ -116,7 +116,7 @@ class DataStore:
                 cursor = connection.cursor()
                 query = f"SELECT * FROM {table_name}"
                 if id:
-                    query += self._construct_where_clause(table_name, id)
+                    query += self._construct_where_clause(id)
                 cursor.execute(query)
                 rows = cursor.fetchall()
                 return [dict(row) for row in rows]
@@ -124,7 +124,7 @@ class DataStore:
                 print(f"Error loading data from table {table_name}: {str(e)}")
                 return None
 
-    def _construct_where_clause(self, table_name: str, id: int) -> str:
+    def _construct_where_clause(self, id: int) -> str:
         """
         Generates a WHERE clause for the query based on the table name and ID.
 
@@ -156,6 +156,45 @@ class DataStore:
             except sqlite3.Error as e:
                 print(f"Error deleting entry from table {table_name}: {str(e)}")
                 return False
+            
+    def update(self, data, table_name, id):
+        """
+        Updates the provided data in the specified table for the given ID.
+
+        Args:
+            data (dict): The data to be updated.
+            table_name (str): The name of the table to update the data in.
+            id (int): The ID of the row to update.
+
+        Returns:
+            bool: True if the update is successful, False otherwise.
+        """
+        query, columns = self._construct_update_query(table_name, data)
+        with SQLiteConnection(self.db_path) as connection:
+            try:
+                data_values = tuple(data[column] for column in columns)
+                data_values += (id,)  # Append the ID for the WHERE clause
+                cursor = connection.cursor()
+                cursor.execute(query, data_values)
+                return cursor.rowcount > 0
+            except sqlite3.Error as e:
+                print(f"Error updating entry in table {table_name}: {str(e)}")
+                return False
+
+    def _construct_update_query(self, table_name: str, data: dict):
+        """
+        Generates an UPDATE query for the given table name and data.
+
+        Args:
+            table_name (str): The name of the table.
+            data (dict): The data to be updated.
+
+        Returns:
+            Tuple[str, List[str]]: The generated UPDATE query and list of columns.
+        """
+        columns = self._get_columns_from_table_schema(self.TABLES[table_name])
+        set_clause = ", ".join([f"{column} = ?" for column in data.keys() if column in columns])
+        return f"UPDATE {table_name} SET {set_clause} WHERE id = ?", list(data.keys())
             
     def clear_tables(self):
         """
