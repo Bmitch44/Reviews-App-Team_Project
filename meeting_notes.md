@@ -627,6 +627,32 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## Scrum Notes
 - Update the Kanban Board regarding code reviews completion
 
+---
 
+## Dec 4, 2023 
+**Recorded by:** Martha Snelgrove
+**Notes submiited on:** Dec 4, 2023
+**SCRUM Master:** Mayesha Jashim
+**Venue:** Discord 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody(**absent** Chaudhary,Vansh)
+
+## Agenda
+- Remaining tasks for the sprint
+- changes in code
+- review of features status
+
+
+## Agenda Items
+- need to complete a microservices document
+- need to complete component architecture document
+- discussed an added update method to datastore and object mapper that updates rather than over rights and pros cons of adding for other areas of the project. Unfortunately it seems like we have a lack of time to do this so we will leave it
+- templates are up so css can begin
+- are the features complete, for all three we are only awaiting server code, the templates, object mapper and databases have been completed and the server code is on track.
+ 
+## SCRUM Notes
+- add unassigned card for microservices document
+- add unassigned card for component architecture document
 
 
