@@ -75,10 +75,10 @@ class WebServer(Bottle):
 
     def dashboard(self):
         """
-        Callback for the dashboard route.
+        Callback for the dashboard route. Will display all topics the user is currently following.
 
         Returns:
-            str: Response for the dashboard route. (logged_in template)
+            str: Response for the dashboard route. (dashboard template)
         """
         self.login_check()
         user_info = UserInfo(self.database_path)
@@ -169,7 +169,7 @@ class WebServer(Bottle):
             topic_id (int): The ID of the topic for which the review is being created.
 
         Returns:
-            str: Response indicating the success or failure of the review creation.
+            str: Response indicating the success or failure of the review creation. If successful, will display a list of all topics if user is currently on the list of all topics, else will redirect to dashboard.
         """
         self.login_check()
         if request.method == 'POST':
@@ -206,6 +206,15 @@ class WebServer(Bottle):
         return template('create_review.tpl', title="Create Review", topic_id=topic_id, base="base_logged_in.tpl")
     
     def follow_topic(self, topic_id):
+        """
+        Follow a given topic.
+
+        Args:
+            topic_id (int): The ID of the topic for which the user is following.
+
+        Returns:
+            str: HTML response displaying a list of all topics if user is currently on the list of all topics, else redirects to dashboard.
+        """
 
         self.login_check()
         user_info = UserInfo(self.database_path)
@@ -218,11 +227,11 @@ class WebServer(Bottle):
         topic_followers = topic.followers
 
         if topic_id not in user.following:      
-            user_following.append(topic_id)  # Add topic_id to user's following list, if already in the list then is should use remove not append
-            topic_followers.append(user_id) # Add topic_id to user's following list, if already in the list then is should use remove not append
+            user_following.append(topic_id)
+            topic_followers.append(user_id) 
         else:
-            user_following.remove(topic_id)  # Add topic_id to user's following list, if already in the list then is should use remove not append
-            topic_followers.remove(user_id) # Add topic_id to user's following list, if already in the list then is should use remove not append
+            user_following.remove(topic_id) 
+            topic_followers.remove(user_id) 
         
         user.topics_followed = json.dumps(user_following)
         topic.topic_followers = json.dumps(topic_followers)
@@ -299,6 +308,15 @@ class WebServer(Bottle):
         return template('list_reviews.tpl', reviews=reviews, filter_criteria="all", request=request, base="base_logged_in.tpl")
     
     def create_review_comment(self, review_id):
+        """
+        Create a comment on a given review
+
+        Args:
+            review_id (int): The ID of the review for which the user is commenting on.
+
+        Returns:
+            str: HTML response displaying a list of all topics if user is currently on the list of all topics, else redirects to dashboard.
+        """
         
         if request.method == 'POST':
             user_info = UserInfo(self.database_path)
@@ -314,6 +332,7 @@ class WebServer(Bottle):
             current_comments = review.comments
             current_comments.append(review_comment)
             review.review_comments = json.dumps(current_comments)
+            user_info.object_mapper.update(review)
 
         if request.get_header('Referer') == "http://localhost:8080/topics":
             return redirect('/topics')
@@ -411,6 +430,12 @@ class WebServer(Bottle):
             return redirect("/topics")
     
     def logout(self):
+        """
+        Log the user out.
+
+        Returns:
+            str: HTML response for the login route. 
+        """
         if request.method == 'POST':
             #get session id from cookie
             session_id = request.get_cookie("session_id", secret=self.secret)
