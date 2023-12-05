@@ -198,7 +198,11 @@ class WebServer(Bottle):
             review = Review(review_content, user_id, topic_id, status, review_ratings=review_ratings)
 
             UserInfo(self.database_path).object_mapper.add(review)
-            return redirect('/topics')
+
+            if request.get_header('Referer') == "http://localhost:8080/topics":
+                return redirect('/topics')
+            else:
+                return redirect('/dashboard')
         return template('create_review.tpl', title="Create Review", topic_id=topic_id, base="base_logged_in.tpl")
     
     def follow_topic(self, topic_id):
@@ -296,16 +300,20 @@ class WebServer(Bottle):
     
     def create_review_comment(self, review_id):
         
-        user_info = UserInfo(self.database_path)
-        session_id = request.get_cookie("session_id", secret=self.secret)
-        user_id = user_info.session_manager.get_session(session_id).user_id
-        review = user_info.object_mapper.get(Review, id=review_id)
-        comment = request.forms.get('comment')
-        review_comment = {
-        "user_id": user_id,
-        "comment": comment
-        }
-        review.comments.append(review_comment)
+        if request.method == 'POST':
+            user_info = UserInfo(self.database_path)
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            user_id = user_info.session_manager.get_session(session_id).user_id
+            review = user_info.object_mapper.get(Review, id=review_id)
+            comment = request.forms.get('review_comment')
+            review_comment = {
+            "user_id": user_id,
+            "comment": comment
+            }
+
+            current_comments = review.comments
+            current_comments.append(review_comment)
+            review.review_comments = json.dumps(current_comments)
 
         if request.get_header('Referer') == "http://localhost:8080/topics":
             return redirect('/topics')
@@ -371,7 +379,7 @@ class WebServer(Bottle):
             reviews = [review for review in reviews if review.user_id == user_id and review.status == "draft"]
         else:
             reviews = []
-
+            
         return template('list_reviews.tpl', title="Reviews", reviews=reviews, filter_criteria=filter_criteria, base="base_logged_in.tpl")
 
     def show_create_topic_form(self):
