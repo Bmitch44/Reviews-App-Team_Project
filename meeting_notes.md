@@ -655,4 +655,27 @@ We will use the code from challenge 9 to create a working web-server to initiali
 - add unassigned card for microservices document
 - add unassigned card for component architecture document
 
+---
 
+## Dec 5, 2023 
+**Recorded by:** Brady Mitchelmore
+**Notes submiited on:** Dec 5, 2023
+**SCRUM Master:** Cody Cribb
+**Venue:** Discord 
+**Source:** None 
+**Time:**  1-2
+**Attendance:** Snelgrove,Martha, Jashim,Mayesha, Mitchelmore,Brady, Cribb,Cody (**absent** Chaudhary,Vansh)
+
+## Agenda:
+- create google draw for component architecture diagram
+- review cody, martha, and brady’s code
+- discuss requirements for sprint 3
+
+## Agenda Items:
+- reviewed the code, marthas and bradys working as expected with all unit tests passing, fixed a bug in cody’s code which was a missing database update call, works good now.
+- created a google draw document to collaborate on our component architecture diagram
+- discussed requirements for sprint 3, and created cards for what was missing
+
+## SCRUM Notes:
+- added cards for performance reviews
+- added card for process document
