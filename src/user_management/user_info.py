@@ -59,19 +59,14 @@ class UserInfo:
         ValueError: If the user does not exist or the password is incorrect.
         """
         users = self.object_mapper.get(User)
-        user_found = None
         for user in users:
             if user.username == username:
-                user_found = user
-                break
-
-        if not user_found:
-            raise ValueError("User does not exist.")
-
-        if self._verify_password(user_found.hashed_password, password):
-            return self.session_manager.get_user_session(user_found.id).id
-        else:
-            raise ValueError("Incorrect password.")
+                if self._verify_password(user.hashed_password, password):
+                    return self.session_manager.get_user_session(user.id).id
+                else:
+                    raise ValueError("Incorrect password.")
+        
+        raise ValueError("User does not exist.")
 
     def logout(self, id):
         """
@@ -129,10 +124,10 @@ class UserInfo:
             raise ValueError("Query cannot be empty.")
 
         result = []
+        query = query.lower()
         all_reviews = self.object_mapper.get(Review)  # This retrieves all reviews.
         all_topics = self.object_mapper.get(Topic)  # This retrieves all topics.
         all_users = self.object_mapper.get(User)  # This retrieves all users
-
         for review in all_reviews:
             for user in all_users:
                 if user.id == review.user_id and query in user.username:
@@ -141,3 +136,4 @@ class UserInfo:
                 if topic.id == review.topic_id and query in topic.name:
                     result.append(review)
         return result
+
