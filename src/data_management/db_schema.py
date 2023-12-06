@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS user (
     id TEXT PRIMARY KEY,
     username TEXT NOT NULL UNIQUE,
     hashed_password TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE
+    email TEXT NOT NULL UNIQUE,
+    topics_followed TEXT
 );
 """
 
@@ -15,6 +16,7 @@ CREATE TABLE IF NOT EXISTS topic (
     user_id INTEGER,
     name TEXT NOT NULL UNIQUE,
     description TEXT NOT NULL,
+    topic_followers TEXT,
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
 """
@@ -27,6 +29,7 @@ CREATE TABLE IF NOT EXISTS review (
     review_text TEXT,
     status TEXT,
     review_ratings TEXT,
+    review_comments TEXT,
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
     FOREIGN KEY (topic_id) REFERENCES topic (id) ON DELETE CASCADE
 );

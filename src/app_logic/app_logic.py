@@ -10,13 +10,17 @@ class User(Base):
     """
     A user in the system
     """
-
-    def __init__(self, username: str, email:str, hashed_password: str, 
+    def __init__(self, username: str, email: str, hashed_password: str, topics_followed: str = None,
                  id: str=None):
         super().__init__(id)
         self.username = username
         self.email = email
         self.hashed_password = hashed_password
+        self.topics_followed = topics_followed or """[]"""
+
+    @property
+    def following(self):
+        return json.loads(self.topics_followed)
     
     @property
     def data(self):
@@ -38,7 +42,8 @@ class User(Base):
         data.update({
             "username" : self.username,
             "email" : self.email,
-            "hashed_password" : self.hashed_password 
+            "hashed_password" : self.hashed_password,
+            "topics_followed" : self.topics_followed
             })
 
         return data
@@ -48,17 +53,21 @@ class Review(Base):
     """
     A review in the system
     """
-
     def __init__(self, review_text: str, user_id: str, topic_id: str, 
-                 status: str = "draft", review_ratings: str = None, 
+                 status: str = "draft", review_ratings: str = None, review_comments: str = None,
                  id: str = None):
         super().__init__(id)
         self.review_text = review_text
         self.user_id = user_id
         self.topic_id = topic_id
         self.status = status
-        self.review_ratings = review_ratings or '[]'
+        self.review_ratings = review_ratings or "[]"
+        self.review_comments = review_comments or """[]"""
     
+    @property
+    def comments(self):
+        return json.loads(self.review_comments)
+
     @property
     def ratings(self):
         return json.loads(self.review_ratings)
@@ -85,7 +94,8 @@ class Review(Base):
             "user_id" : self.user_id,
             "topic_id" : self.topic_id,
             "status" : self.status,
-            "review_ratings" : self.review_ratings
+            "review_ratings" : self.review_ratings,
+            "review_comments" : self.review_comments
         })
 
         return data
@@ -95,13 +105,20 @@ class Topic(Base):
     """
     a topic in the system 
     """
+
+    # needs a list of followers and a property to make that happen
     
-    def __init__(self, name: str, description: str, user_id: str, 
+    def __init__(self, name: str, description: str, user_id: str, topic_followers: str=None,
                  id: str = None):
         super().__init__(id)
         self.name = name
         self.description = description
         self.user_id = user_id
+        self.topic_followers = topic_followers or """[]"""
+
+    @property
+    def followers(self):
+        return json.loads(self.topic_followers)
 
     @property
     def data(self):
@@ -123,7 +140,8 @@ class Topic(Base):
         data.update({
             "name" : self.name,
             "description" : self.description,
-            "user_id" : self.user_id
+            "user_id" : self.user_id,
+            "topic_followers" : self.topic_followers
             })
 
         return data
