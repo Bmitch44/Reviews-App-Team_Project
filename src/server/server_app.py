@@ -22,7 +22,7 @@ import json
 import os
 from bottle import Bottle, run, template, request, redirect, response, static_file, TEMPLATE_PATH
 from src.user_management.user_info import UserInfo
-from src.app_logic.app_logic import Topic, Review
+from src.app_logic.app_logic import User, Topic, Review
 
 TEMPLATE_PATH.insert(0, './src/templates/')
 
@@ -46,15 +46,16 @@ class WebServer(Bottle):
         self.route('/login', method='POST', callback=self.do_login)
         self.route('/register', callback=self.register)
         self.route('/register', method='POST', callback=self.do_register)
-        self.route('/dashboard', callback=self.dashboard)
-        self.route('/dashboard', method='POST', callback=self.create_review)
+        self.route('/dashboard', method=['GET', 'POST'], callback=self.dashboard)
         self.route('/topics', callback=self.list_topics)
         self.route('/topics/add', callback=self.show_create_topic_form)
         self.route('/topics/create', method='POST', callback=self.create_topic)
         self.route('/topics/<topic_id>/create_review', method=['GET', 'POST'], callback=self.create_review)
+        self.route('/topics/<topic_id>/follow', method='POST', callback=self.follow_topic)
         self.route('/reviews', method=['GET', 'POST'], callback=self.list_reviews)
         self.route('/reviews/<review_id>/edit', method=['GET', 'POST'], callback=self.edit_review)
         self.route('/reviews/<review_id>/delete', method=['GET', 'POST'], callback=self.delete_review)
+        self.route('/reviews/<review_id>/comment', method='POST', callback=self.create_review_comment)
         self.route('/reviews/search', method=['GET', 'POST'], callback=self.search_review)
         self.route('/logout', method=['GET', 'POST'], callback=self.logout)
         self.route('/static/<filepath:path>', callback=self.server_static)
@@ -74,13 +75,26 @@ class WebServer(Bottle):
 
     def dashboard(self):
         """
-        Callback for the dashboard route.
+        Callback for the dashboard route. Will display all topics the user is currently following.
 
         Returns:
-            str: Response for the dashboard route. (logged_in template)
+            str: Response for the dashboard route. (dashboard template)
         """
         self.login_check()
-        return template('base_logged_in.tpl', title="Dashboard", base="Welcome to the dashboard!")
+        user_info = UserInfo(self.database_path)
+        session_id = request.get_cookie("session_id", secret=self.secret)
+        user_id = user_info.session_manager.get_session(session_id).user_id
+        user = user_info.object_mapper.get(User, id=user_id)
+        topics = user_info.object_mapper.get(Topic)
+        reviews = user_info.object_mapper.get(Review)
+        followed_topics = user.following
+        displayed_topics = [topic for topic in topics if topic.id in followed_topics]
+        displayed_reviews = {
+            topic_id: 
+            [review for review in reviews if review.topic_id == topic_id and review.status == "published"]
+            for topic_id in followed_topics
+            }
+        return template('dashboard.tpl', title="Dashboard", topics=displayed_topics, reviews=displayed_reviews, user=user, base="base_logged_in.tpl")
 
     def login(self):
         """
@@ -155,7 +169,7 @@ class WebServer(Bottle):
             topic_id (int): The ID of the topic for which the review is being created.
 
         Returns:
-            str: Response indicating the success or failure of the review creation.
+            str: Response indicating the success or failure of the review creation. If successful, will display a list of all topics if user is currently on the list of all topics, else will redirect to dashboard.
         """
         self.login_check()
         if request.method == 'POST':
@@ -184,8 +198,51 @@ class WebServer(Bottle):
             review = Review(review_content, user_id, topic_id, status, review_ratings=review_ratings)
 
             UserInfo(self.database_path).object_mapper.add(review)
-            return redirect('/topics')
+
+            if request.get_header('Referer') == "http://localhost:8080/topics":
+                return redirect('/topics')
+            else:
+                return redirect('/dashboard')
         return template('create_review.tpl', title="Create Review", topic_id=topic_id, base="base_logged_in.tpl")
+    
+    def follow_topic(self, topic_id):
+        """
+        Follow a given topic.
+
+        Args:
+            topic_id (int): The ID of the topic for which the user is following.
+
+        Returns:
+            str: HTML response displaying a list of all topics if user is currently on the list of all topics, else redirects to dashboard.
+        """
+
+        self.login_check()
+        user_info = UserInfo(self.database_path)
+        session_id = request.get_cookie("session_id", secret=self.secret)
+        user_id = user_info.session_manager.get_session(session_id).user_id
+        user = user_info.object_mapper.get(User, id=user_id)
+        topic = user_info.object_mapper.get(Topic, id=topic_id)
+
+        user_following = user.following
+        topic_followers = topic.followers
+
+        if topic_id not in user.following:      
+            user_following.append(topic_id)
+            topic_followers.append(user_id) 
+        else:
+            user_following.remove(topic_id) 
+            topic_followers.remove(user_id) 
+        
+        user.topics_followed = json.dumps(user_following)
+        topic.topic_followers = json.dumps(topic_followers)
+
+        user_info.object_mapper.update(user)
+        user_info.object_mapper.update(topic)
+
+        if request.get_header('Referer') == "http://localhost:8080/topics":
+            return redirect('/topics')
+        else:
+            return redirect('/dashboard')
     
     def edit_review(self, review_id):
         """
@@ -250,6 +307,39 @@ class WebServer(Bottle):
         reviews = user_info.object_mapper.get(Review)
         return template('list_reviews.tpl', reviews=reviews, filter_criteria="all", request=request, base="base_logged_in.tpl")
     
+    def create_review_comment(self, review_id):
+        """
+        Create a comment on a given review
+
+        Args:
+            review_id (int): The ID of the review for which the user is commenting on.
+
+        Returns:
+            str: HTML response displaying a list of all topics if user is currently on the list of all topics, else redirects to dashboard.
+        """
+        
+        if request.method == 'POST':
+            user_info = UserInfo(self.database_path)
+            session_id = request.get_cookie("session_id", secret=self.secret)
+            user_id = user_info.session_manager.get_session(session_id).user_id
+            review = user_info.object_mapper.get(Review, id=review_id)
+            comment = request.forms.get('review_comment')
+            review_comment = {
+            "user_id": user_id,
+            "comment": comment
+            }
+
+            current_comments = review.comments
+            current_comments.append(review_comment)
+            review.review_comments = json.dumps(current_comments)
+            user_info.object_mapper.update(review)
+
+        if request.get_header('Referer') == "http://localhost:8080/topics":
+            return redirect('/topics')
+        else:
+            return redirect('/dashboard')
+
+    
     def search_review(self):
         """
         Searches for a review based on the provided query.
@@ -273,13 +363,17 @@ class WebServer(Bottle):
             str: HTML response displaying a list of topics.
         """
         self.login_check()
+        session_id = request.get_cookie("session_id", secret=self.secret)
+        user_id = UserInfo(self.database_path).session_manager.get_session(session_id).user_id
+        user = UserInfo(self.database_path).object_mapper.get(User, id=user_id)
+
         topics = UserInfo(self.database_path).object_mapper.get(Topic)
         raw_reviews = UserInfo(self.database_path).object_mapper.get(Review)
       
         reviews = {}
         for topic in topics:
             reviews[topic.id] = [review for review in raw_reviews if review.topic_id == topic.id and review.status == "published"]
-        return template('list_topics.tpl', title="Topics", topics=topics, reviews=reviews, base="base_logged_in.tpl")
+        return template('list_topics.tpl', title="Topics", topics=topics, reviews=reviews, user=user, base="base_logged_in.tpl")
 
     def list_reviews(self):
         """
@@ -304,7 +398,7 @@ class WebServer(Bottle):
             reviews = [review for review in reviews if review.user_id == user_id and review.status == "draft"]
         else:
             reviews = []
-
+            
         return template('list_reviews.tpl', title="Reviews", reviews=reviews, filter_criteria=filter_criteria, base="base_logged_in.tpl")
 
     def show_create_topic_form(self):
@@ -331,11 +425,17 @@ class WebServer(Bottle):
             topic_description = request.forms.get('description')
             session_id = request.get_cookie("session_id", secret=self.secret)
             user_id = UserInfo(self.database_path).session_manager.get_session(session_id).user_id
-            topic = Topic(topic_name, topic_description, user_id)
+            topic = Topic(topic_name, topic_description, user_id, topic_followers="[]")
             UserInfo(self.database_path).object_mapper.add(topic)
             return redirect("/topics")
     
     def logout(self):
+        """
+        Log the user out.
+
+        Returns:
+            str: HTML response for the login route. 
+        """
         if request.method == 'POST':
             #get session id from cookie
             session_id = request.get_cookie("session_id", secret=self.secret)
