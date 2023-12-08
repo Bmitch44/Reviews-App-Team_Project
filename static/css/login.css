@@ -24,11 +24,23 @@ form input[type="password"]{
 form input[type="submit"] {
     margin-top: 10px;
     width: 20%;
-    background-color: rgb(127, 255, 144);
+    background-color: #333;
+    color: white;
 }
+
+form input[type="submit"]:hover {
+    background-color: #ddd;
+    color: black;
+  }
 
 form button[type="submit"] {
     margin-top: 10px;
     width: 20%;
-    background-color: rgb(255, 48, 48);
+    background-color: #333;
+    color: white;
 }
+
+form button[type="submit"]:hover {
+    background-color: #ddd;
+    color: black;
+  }
