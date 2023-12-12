@@ -1,4 +1,5 @@
 % rebase('base.tpl', title='Register')
+<link rel="stylesheet" href="/static/css/login.css">
     <form action="/register" method="post">
         <label>Username:</label>
         <input type="text" name="username">
