@@ -27,7 +27,9 @@
 | Mayesha Jashim | Added unittests `test_session_management.py` and `test_user_info.py` | test/ |
 | Mayesha JAshim | Modified `user_info.py` to use hashlib.pbkdf2_hmac for hashed password. | src/user_management/user_info.py |
 | Martha Snelgrove | Performance review added | perf_reviews/martha-reviews.md|
-| Martha Snelgrove | UML diagram | READEME.md |
+| Martha Snelgrove | UML diagram | README.md |
 | Mayesha Jashim | added a search review method | `user_info.py` |
 | Mayesha Jashim | modified 'register' and 'login' methods to check validity of the credentials being input | `user_info.py` |
 | Mayesha Jashim | added some CSS styling to the login, logout and register templates | `static/css/login.css` |
+| Cody Cribb | added the implementation for new features of the `server_app.py` file, including the methods follow_topic, create_review_comment and updated the dashboard method. | src/server/server_app.py
+| Cody Cribb | added the routing for the methods listed above. | src/server/server_app.py |
