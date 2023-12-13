@@ -622,7 +622,7 @@ We will use the code from challenge 9 to create a working web-server to initiali
 ## Agenda Items
 - Each member gave a presentation of their modules and its functionality
 - Also discussed how the tests work 
-- Notes taken on the modules and recorded in 'code_reviews/Code-reviews-sprint3'
+- Notes taken on the modules and recorded in 'code_reviews/code-presentation-s3'
 
 ## Scrum Notes
 - Update the Kanban Board regarding code reviews completion
