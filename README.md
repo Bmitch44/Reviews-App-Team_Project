@@ -76,7 +76,7 @@ Code reviews will be found under each individual pull request which will have a 
 - `src/server/server_app.py`
 
 #### Tests:
-- None
+- `test/Server_app Tests.postman_collection.json`
 
 ### Vansh:
 #### Implementations:
